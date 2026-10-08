@@ -1,0 +1,1 @@
+headon_w08_trial01 | 0.416 m | surf -0.023 | right | commit 2.15 | s/s/r 0.1/0.1/0.0s | RIGHT->LEFT (-0.11) | plans L/R 24/5 | drop +0.39 s | goal yes

@@ -1,0 +1,44 @@
+# prediction started 2026-10-08 20:42:11
+candidate | headon_lanerule_run01_20261005_102208 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+candidate | headon_lanerule_run02_20261005_102449 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | headon_lanerule_run03_20261005_102648 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | headon_v4noghost_run02_20261008_115641 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | headon_v4noghost_run03_20261008_120759 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | headon_v4noghosttf05_run01_20261008_121720 | replay lane starts 1 | 1 on the robot | controller active after 4 checks
+candidate | headon_v4noghosttf05_run02_20261008_122118 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | headon_v4noghosttf05_run03_20261008_122708 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | pairnarrow_fullstack_run01_20261005_152256 | replay lane starts 2 | 3 on the robot | controller active after 3 checks
+candidate | pairnarrow_hwdetmap_run01_20261005_135714 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+candidate | pairnarrow_hwdetmap_run02_20261005_140057 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+candidate | pairnarrow_hwdetmap_run03_20261005_140853 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+candidate | pairwide_fullstack_run01_20261005_151633 | replay lane starts 0 | 0 on the robot | controller active after 4 checks
+candidate | pairwide_hwdetmap_run01_20261005_132029 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+candidate | pairwide_hwdetmap_run02_20261005_132803 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+candidate | pairwide_hwdetmap_run03_20261005_133428 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+decided | pairnarrow_fullstack_run01_20261005_152256 | replay lane starts 2 | 3 on the robot | controller active after 3 checks
+decided | pairnarrow_hwdetmap_run01_20261005_135714 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+decided | pairnarrow_hwdetmap_run02_20261005_140057 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+decided | pairnarrow_hwdetmap_run03_20261005_140853 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+decided | pairwide_fullstack_run01_20261005_151633 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+decided | pairwide_hwdetmap_run01_20261005_132029 | replay lane starts 0 | 2 on the robot | controller active after 3 checks
+decided | pairwide_hwdetmap_run02_20261005_132803 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+decided | pairwide_hwdetmap_run03_20261005_133428 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+# prediction finished 2026-10-08 21:08:52
+# recjump started 2026-10-08 21:19:05, critic 98844e8d
+recjump | headon_lanerule_run01_20261005_102208 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+recjump | headon_lanerule_run02_20261005_102449 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_lanerule_run03_20261005_102648 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_v4noghost_run02_20261008_115641 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_v4noghost_run03_20261008_120759 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_v4noghosttf05_run01_20261008_121720 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_v4noghosttf05_run02_20261008_122118 | replay lane starts 1 | 1 on the robot | controller active after 3 checks
+recjump | headon_v4noghosttf05_run03_20261008_122708 | replay lane starts 1 | 1 on the robot | controller active after 4 checks
+recjump | pairnarrow_fullstack_run01_20261005_152256 | replay lane starts 2 | 3 on the robot | controller active after 3 checks
+recjump | pairnarrow_hwdetmap_run01_20261005_135714 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+recjump | pairnarrow_hwdetmap_run02_20261005_140057 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+recjump | pairnarrow_hwdetmap_run03_20261005_140853 | replay lane starts 0 | 1 on the robot | controller active after 3 checks
+recjump | pairwide_fullstack_run01_20261005_151633 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+recjump | pairwide_hwdetmap_run01_20261005_132029 | replay lane starts 0 | 2 on the robot | controller active after 3 checks
+recjump | pairwide_hwdetmap_run02_20261005_132803 | replay lane starts 0 | 0 on the robot | controller active after 3 checks
+recjump | pairwide_hwdetmap_run03_20261005_133428 | replay lane starts 2 | 2 on the robot | controller active after 3 checks
+# recjump finished 2026-10-08 21:36:32

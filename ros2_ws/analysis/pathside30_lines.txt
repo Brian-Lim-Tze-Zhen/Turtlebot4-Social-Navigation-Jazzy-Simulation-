@@ -1,0 +1,13 @@
+headon_pathside30_trial01 | 0.703 m | surf +0.264 | right | commit 3.17 | s/s/r 0.0/0.2/0.0s | RIGHT->RIGHT (+0.28) | plans L/R 1/25 | drop -0.34 s | goal yes
+headon_pathside30_trial02 | 0.748 m | surf +0.309 | right | commit 3.36 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (+0.06) | plans L/R 1/23 | no drop | goal yes
+headon_pathside30_trial03 | 0.638 m | surf +0.199 | left | commit 2.34 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-1.54) | plans L/R 20/4 | drop -0.63 s | goal yes
+headon_pathside30_trial04 | 0.631 m | surf +0.192 | left | commit 2.49 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.91) | plans L/R 21/3 | drop -0.45 s | goal yes
+headon_pathside30_trial05 | 0.760 m | surf +0.321 | right | commit 3.45 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (+0.01) | plans L/R 2/24 | drop -0.26 s | goal yes
+headon_pathside30_trial06 | 0.676 m | surf +0.237 | left | commit 2.75 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-1.66) | plans L/R 21/4 | no drop | goal yes
+headon_pathside30_trial07 | 0.682 m | surf +0.243 | left | commit 2.91 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.71) | plans L/R 20/4 | no drop | goal yes
+headon_pathside30_trial08 | 0.738 m | surf +0.299 | right | commit 3.16 | s/s/r 0.0/0.1/0.0s | RIGHT->RIGHT (+0.14) | plans L/R 1/23 | drop -0.31 s | goal yes
+headon_pathside30_trial09 | 0.671 m | surf +0.232 | left | commit 2.81 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.82) | plans L/R 23/1 | drop -0.24 s | goal yes
+headon_pathside30_trial10 | 0.664 m | surf +0.225 | left | commit 2.56 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.87) | plans L/R 21/1 | no drop | goal yes
+headon_pathside30_trial11 | 0.645 m | surf +0.206 | left | commit 2.74 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-1.03) | plans L/R 25/0 | drop -0.30 s | goal yes
+headon_pathside30_trial12 | 0.719 m | surf +0.280 | right | commit 3.03 | s/s/r 0.0/0.3/0.0s | RIGHT->RIGHT (+0.40) | plans L/R 1/25 | drop -0.48 s | goal yes
+headon_pathside30_trial13 | 0.786 m | surf +0.347 | right | commit 3.70 | s/s/r 0.0/0.3/0.0s | RIGHT->RIGHT (+0.22) | plans L/R 0/27 | no drop | goal yes

@@ -1,0 +1,5 @@
+ROBOT (bag /rosout), t after first person message:
+REPLAY (this config):
+  setup    side hold: on (the first side is kept unless the walker is more than 0.30 m on the other side)
+  setup    pass side measured against the robot-goal line (side_ref_goal)
+  (* replay times relative to its first decision; the replay runs on bag time, its log stamps are wall time)

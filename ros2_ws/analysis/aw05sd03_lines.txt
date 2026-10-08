@@ -1,0 +1,5 @@
+headon_aw05sd03_trial01 | 0.781 m | surf +0.342 | left | commit 3.79 | s/s/r 0.0/0.3/0.0s | LEFT->LEFT (-1.76) | plans L/R 20/5 | no drop | goal yes
+headon_aw05sd03_trial02 | 0.806 m | surf +0.367 | right | commit 4.05 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (+0.24) | plans L/R 1/23 | no drop | goal yes
+headon_aw05sd03_trial03 | 0.746 m | surf +0.307 | left | commit 3.64 | s/s/r 0.0/0.1/0.0s | LEFT->LEFT (-0.11) | plans L/R 17/6 | no drop | goal yes
+headon_aw05sd03_trial04 | 0.740 m | surf +0.301 | right | commit 3.65 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (+0.04) | plans L/R 2/23 | no drop | goal yes
+headon_aw05sd03_trial05 | 0.700 m | surf +0.261 | left | commit 3.03 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-1.09) | plans L/R 23/0 | no drop | goal yes

@@ -57,6 +57,8 @@ void SocialCritic::initialize()
   getParam(side_decision_s_, "side_decision_s", 1.0f);
   getParam(side_switch_offset_, "side_switch_offset", 0.2f);
   getParam(side_commit_offset_, "side_commit_offset", 0.0f);
+  getParam(side_hold_offset_, "side_hold_offset", 0.0f);
+  getParam(lane_approach_drop_max_step_, "lane_approach_drop_max_step", false);
   getParam(side_ambiguous_offset_, "side_ambiguous_offset", 0.0f);
   getParam(publish_markers_, "publish_markers", false);
   getParam(publish_lane_block_, "publish_lane_block", false);
@@ -154,6 +156,12 @@ void SocialCritic::initialize()
     logger_, "SocialCritic: lane needs a sustained approach: %s (%.2f m within %.2f s, %.0f %% of the steps towards the robot)",
     lane_approach_window_s_ > 0.0f ? "on" : "off", lane_approach_min_move_, lane_approach_window_s_,
     100.0f * lane_approach_consistency_);
+  RCLCPP_INFO(
+    logger_, "SocialCritic: approach test without its largest step: %s",
+    lane_approach_drop_max_step_ ? "on" : "off");
+  RCLCPP_INFO(
+    logger_, "SocialCritic: side hold: %s (the first side is kept unless the walker is more than %.2f m on the other side)",
+    side_hold_offset_ > 0.0f ? "on" : "off", side_hold_offset_);
   RCLCPP_INFO(
     logger_, "SocialCritic: pass side measured against the %s",
     side_ref_goal_ ? "robot-goal line (side_ref_goal)" : "start of the global path");
@@ -254,10 +262,8 @@ bool SocialCritic::approachConfirmed(int track_id, float ux, float uy) const
   }
   // (ux, uy) points from the person to the robot.
   const float moved = (h.back().x - h.front().x) * ux + (h.back().y - h.front().y) * uy;
-  if (moved < lane_approach_min_move_) {
-    return false;
-  }
   int towards = 0, steps = 0;
+  float max_step = 0.0f;   // largest single step towards the robot
   for (size_t k = 1; k < h.size(); ++k) {
     const float s = (h[k].x - h[k - 1].x) * ux + (h[k].y - h[k - 1].y) * uy;
     if (std::fabs(s) < 1e-4f) {
@@ -266,7 +272,14 @@ bool SocialCritic::approachConfirmed(int track_id, float ux, float uy) const
     ++steps;
     if (s > 0.0f) {
       ++towards;
+      max_step = std::max(max_step, s);
     }
+  }
+  // Jump-robust (see lane_approach_drop_max_step_): the approach must not
+  // rest on one jump of the estimate.
+  const float counted = lane_approach_drop_max_step_ ? moved - max_step : moved;
+  if (counted < lane_approach_min_move_) {
+    return false;
   }
   return steps > 0 && static_cast<float>(towards) >= lane_approach_consistency_ * static_cast<float>(steps);
 }
@@ -812,6 +825,18 @@ void SocialCritic::score(CriticData & data)
         a.offset_n += 1;
         const double mean = a.offset_sum / static_cast<double>(a.offset_n);
         a.side = (mean < -static_cast<double>(side_switch_offset_)) ? -1 : 1;
+        // Keep the side the lane started with unless the walker is clearly
+        // on the other side (see side_hold_offset_).
+        if (a.offset_n == 1) {
+          a.first_side = a.side;
+        } else if (side_hold_offset_ > 0.0f && a.first_side != 0 && a.side != a.first_side) {
+          const bool clear = a.side < 0 ?
+            mean < -static_cast<double>(side_hold_offset_) :
+            mean > static_cast<double>(side_hold_offset_);
+          if (!clear) {
+            a.side = a.first_side;
+          }
+        }
         a.ambiguous = side_ambiguous_offset_ > 0.0f && a.side > 0 &&
           mean < -static_cast<double>(side_ambiguous_offset_);
         // Where the robot already is relative to the lane: q > 0 is the

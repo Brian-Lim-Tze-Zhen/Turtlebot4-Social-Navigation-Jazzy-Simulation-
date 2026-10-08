@@ -258,6 +258,7 @@ private:
     double offset_sum{0.0};
     int offset_n{0};
     int side{1};
+    int first_side{0};       // side after the first offset sample (side_hold_offset_)
     bool side_frozen{false};
     bool ambiguous{false};   // walker may be on the robot's right: no planner block
     float last_x{0.0f};      // last raw position of this track (lane_jump_reset_)
@@ -327,6 +328,23 @@ private:
   // already 0.11 m to the right, and it passed at 0.46 m (bag
   // headon_hwreq_block_corr_trial2). 0 = no such commit.
   float side_commit_offset_{0.0f};
+  // side_hold_offset_ > 0 (8 Oct 2026): the side the lane started with is kept
+  // when the side is fixed, unless the walker's mean offset is beyond this
+  // value on the other side. The side used to be fixed at the -side_switch_offset_
+  // boundary, so a walker read -0.11 m against a threshold of -0.10 m turned a
+  // RIGHT lane into a fixed LEFT after the robot had already moved right; plan
+  // and robot then split and the robot passed at 0.416 m (bag headon_w08_trial01).
+  // 0 = off (old behaviour).
+  float side_hold_offset_{0.0f};
+  // lane_approach_drop_max_step_ (8 Oct 2026): the sustained-approach test
+  // leaves out the largest single step towards the robot. On the robot the
+  // estimate of a standing pair member jumped 0.4-1.1 m between two
+  // messages towards the robot and started a lane (bags of 5 Oct:
+  // pairnarrow_hwdetmap_run03, pairwide_hwdetmap_run01/run03,
+  // pairnarrow_fullstack_run01); a walker's estimate moves ~0.07 m per
+  // message (95 % <= 0.33 m), so its approach does not rest on one step.
+  // false = off (old behaviour).
+  bool lane_approach_drop_max_step_{false};
   // Three zones. The sideways estimate at ~7 m is only good to a few
   // decimetres (a centred walker read -0.22 .. +0.50 m over 13 runs; one at
   // -0.40 m read -0.40 and -0.19), so a walker slightly to the right cannot

@@ -1,0 +1,2 @@
+headon_aw05m090_trial01 | 0.756 m | surf +0.317 | right | commit 3.55 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (-0.07) | plans L/R 1/22 | drop -0.37 s | goal yes
+headon_aw05m090_trial02 | 0.766 m | surf +0.327 | left | commit 3.54 | s/s/r 0.0/0.1/0.0s | LEFT->LEFT (-1.60) | plans L/R 22/1 | no drop | goal yes

@@ -1,0 +1,1 @@
+headon_psw24_trial01 | 0.652 m | surf +0.213 | left | commit 2.82 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-1.08) | plans L/R 22/3 | drop -0.23 s | goal yes

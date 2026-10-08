@@ -1,0 +1,1 @@
+64383bbbe62da254340de7773e3e2af0  install/social_critic/lib/libsocial_critic.so

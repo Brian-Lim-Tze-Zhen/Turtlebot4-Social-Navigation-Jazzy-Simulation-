@@ -1,0 +1,39 @@
+headon_hwsync_pathside_corr_trial5: window 58 s wall (goal accepted -> result), 55 samples of 1 s, real-time factor 0.69, machine 16 cores
+values in % of ONE core (100 = one core fully busy); mean / 95th percentile
+
+per group
+  desktop         8.5 /   19.3   =   0.5 % of the machine
+  nav2          169.4 /  198.9   =  10.6 % of the machine
+  other          10.5 /   14.9   =   0.7 % of the machine
+  perception    403.8 /  460.6   =  25.2 % of the machine
+  sim-only      340.4 /  381.3   =  21.3 % of the machine
+  machine        59.4 /   72.6   (% of all 16 cores)
+
+perception nodes
+  beep_retry                     34.1 /   38.1   real-time estimate   49.4
+  blocked_person_beep            25.3 /   27.7   real-time estimate   36.6
+  camera_ray_identity            21.6 /   23.8   real-time estimate   31.3
+  camera_ray_person              22.4 /   24.8   real-time estimate   32.4
+  human_kf_predictor             23.2 /   48.3   real-time estimate   33.6
+  person_marker_publisher        11.9 /   13.4   real-time estimate   17.3
+  predicted_person_cloud         30.7 /   34.9   real-time estimate   44.4
+  social_group_detector          25.4 /   27.7   real-time estimate   36.7
+  social_zone_costmap            12.1 /   13.4   real-time estimate   17.5
+  yolo_leg_detector             197.3 /  249.5   real-time estimate  285.7
+
+nav2 nodes
+  amcl                            9.4 /   11.2
+  behavior_server                 9.5 /   10.5
+  bt_navigator                   13.4 /   14.9
+  collision_monitor               8.3 /    9.6
+  controller_server              40.2 /   47.8
+  docking_server                  9.0 /   10.2
+  lifecycle_manager              24.2 /   26.8
+  map_server                     11.6 /   15.3
+  planner_server                 13.8 /   15.3
+  route_server                    8.9 /    9.6
+  smoother_server                 8.1 /    9.5
+  velocity_smoother               6.5 /    7.5
+  waypoint_follower               6.4 /    8.6
+
+laptop share on the robot (perception + Nav2): 573.2 % of one core measured, 754.3 with perception scaled to real time = 47.1 % of the 16-core machine

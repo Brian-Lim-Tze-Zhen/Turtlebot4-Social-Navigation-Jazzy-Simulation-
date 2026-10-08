@@ -1,0 +1,2 @@
+headon_goalhold_trial01 | 0.810 m | surf +0.371 | right | commit 3.47 | s/s/r 0.0/0.1/0.0s | RIGHT->RIGHT (-0.16) | plans L/R 0/27 | no drop | goal yes
+headon_goalhold_trial02 | 0.840 m | surf +0.401 | right | commit 3.82 | s/s/r 0.0/0.1/0.0s | RIGHT->RIGHT (+0.07) | plans L/R 1/23 | drop -0.51 s | goal yes
