@@ -72,6 +72,8 @@ void SocialCritic::initialize()
   getParam(occlusion_slow_gap_, "occlusion_slow_gap", 1.0f);
   getParam(occlusion_slow_after_s_, "occlusion_slow_after_s", 1.0f);
   getParam(occlusion_slow_horizon_s_, "occlusion_slow_horizon_s", 1.5f);
+  getParam(occlusion_slow_ignore_coasted_, "occlusion_slow_ignore_coasted", false);
+  getParam(coast_ghost_radius_, "coast_ghost_radius", 0.0f);
   getParam(lane_block_overlap_, "lane_block_overlap", 0.30f);
   getParam(lane_block_robot_gap_, "lane_block_robot_gap", 1.0f);
   getParam(marker_topic_, "marker_topic", std::string("/social_critic/lane_markers"));
@@ -162,6 +164,9 @@ void SocialCritic::initialize()
   RCLCPP_INFO(
     logger_, "SocialCritic: side hold: %s (the first side is kept unless the walker is more than %.2f m on the other side)",
     side_hold_offset_ > 0.0f ? "on" : "off", side_hold_offset_);
+  RCLCPP_INFO(
+    logger_, "SocialCritic: noghost: coasted targets %s the occlusion slow-down, ghost radius %.2f m (0 = off)",
+    occlusion_slow_ignore_coasted_ ? "do not start" : "start", coast_ghost_radius_);
   RCLCPP_INFO(
     logger_, "SocialCritic: pass side measured against the %s",
     side_ref_goal_ ? "robot-goal line (side_ref_goal)" : "start of the global path");
@@ -440,6 +445,7 @@ std::vector<Target> SocialCritic::collectTargets()
     }
 
     if (age <= track_timeout_) {
+      ghost_ids_.erase(p.track_id);   // observed again: may be coasted later (see coast_ghost_radius_)
       // Fresh observation: penalise the reported position, carrying the
       // velocity so score() can propagate it along the rollout.
       out.push_back(toCostmap(p.x, p.y, p.vx, p.vy, 1.0f, sd));
@@ -467,6 +473,9 @@ std::vector<Target> SocialCritic::collectTargets()
     }
     if (p.speed > max_coast_speed_) {
       continue;
+    }
+    if (ghost_ids_.count(p.track_id)) {
+      continue;   // coasted into the robot once already (see coast_ghost_radius_)
     }
 
     // Coasting. The last real observation is `age` seconds old, so
@@ -508,6 +517,25 @@ void SocialCritic::score(CriticData & data)
   }
 
   auto targets = collectTargets();
+  if (coast_ghost_radius_ > 0.0f) {
+    // Drop a coasted target that has reached the robot (see coast_ghost_radius_).
+    const float gx = static_cast<float>(data.state.pose.pose.position.x);
+    const float gy = static_cast<float>(data.state.pose.pose.position.y);
+    const float r2 = coast_ghost_radius_ * coast_ghost_radius_;
+    for (auto it = targets.begin(); it != targets.end(); ) {
+      const float dx = it->x - gx;
+      const float dy = it->y - gy;
+      if (it->coasted && it->track_id >= 0 && dx * dx + dy * dy < r2) {
+        ghost_ids_[it->track_id] = true;
+        RCLCPP_INFO(
+          logger_, "SocialCritic: track %d dropped as a ghost (coasted to %.2f m from the robot, not seen there)",
+          it->track_id, std::sqrt(dx * dx + dy * dy));
+        it = targets.erase(it);
+      } else {
+        ++it;
+      }
+    }
+  }
   if (targets.empty()) {
     // The costmap layer keeps the last cloud it received, so the block has
     // to be cleared explicitly once there is nobody to avoid.
@@ -989,6 +1017,9 @@ void SocialCritic::score(CriticData & data)
       for (const auto & t : targets) {
         if (!t.lane || t.weight_scale <= 0.0f) {
           continue;
+        }
+        if (occlusion_slow_ignore_coasted_ && t.coasted) {
+          continue;   // an extrapolated walker, not one seen going by
         }
         const float gap = (robot_x0 - t.x) * t.lx + (robot_y0 - t.y) * t.ly;
         if (gap > -0.3f && gap < occlusion_slow_gap_) {

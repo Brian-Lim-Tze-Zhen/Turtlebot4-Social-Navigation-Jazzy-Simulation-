@@ -484,6 +484,14 @@ private:
   float occlusion_slow_horizon_s_{1.5f};
   double slow_until_{-1.0};
   bool slow_was_active_{false};
+  // NOGHOST (9 Oct 2026, ported from the robot critic social_critic_lane_noghost): a coasted target (no observation
+  // for more than track_timeout_) does not start the occlusion slow-down; a coasted target that comes within
+  // coast_ghost_radius_ of the robot is dropped and not coasted again until observed. On the robot the walker is lost
+  // during the swerve and the coasted estimate slowed the robot to 0.06 m/s after the pass
+  // (bag headon_rec15_run04_20261009_092705). Both off by default = behaviour as before.
+  bool occlusion_slow_ignore_coasted_{false};
+  float coast_ghost_radius_{0.0f};
+  std::unordered_map<int, bool> ghost_ids_;
   float lane_block_overlap_{0.30f};    // m onto the allowed side (covers the lane)
   float lane_block_robot_gap_{1.0f};   // m of clear lane left in front of the robot
   float lane_block_spacing_{0.05f};
