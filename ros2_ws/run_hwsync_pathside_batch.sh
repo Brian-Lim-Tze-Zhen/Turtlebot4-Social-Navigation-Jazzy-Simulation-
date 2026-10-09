@@ -23,7 +23,7 @@ for i in $(seq "$1" "$2"); do
     md5=$(cut -c1-8 "bags/$name/critic_so_md5.txt" 2>/dev/null | head -1)
     side=$(grep -c "pass side measured against the ${SIDE_REF:-start of the global path}" "logs/$name/nav2.log" 2>/dev/null)   # SIDE_REF="robot-goal line" for side_ref_goal configs
     ng=$(grep -c "NOGHOST: a track" "logs/$name/perception.log" 2>/dev/null)
-    nodes=$(grep -c "blocked_person_beep_node_front_sim.py, beep_retry_node_hwsync_sim.py" "bags/$name/run_notes.txt" 2>/dev/null)
+    nodes=$(grep -c "${BLOCKED_BEEP_SCRIPT:-blocked_person_beep_node_front_sim.py}, beep_retry_node_hwsync_sim.py" "bags/$name/run_notes.txt" 2>/dev/null)   # 9 Oct: the configured hold node (default as before)
     # The OUTCOME never causes a repeat: a trial counts once its goal has a final status (SUCCEEDED,
     # ABORTED, ...) and the set-up checks pass. Only a failed start (no final status) or a wrong set-up is repeated.
     if [ -n "$goal" ] && [ "$md5" = "$H" ] && [ "${side:-0}" -gt 0 ] \
