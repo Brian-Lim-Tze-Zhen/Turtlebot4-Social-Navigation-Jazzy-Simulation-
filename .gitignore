@@ -75,3 +75,12 @@ ros2_ws/bags/
 *.bak_*
 ros2_ws/debug_crops/
 *.orig
+
+# Reproduction of 10 Oct 2026 (2.0 GB workspace, 1.5 GB results; results already copied into ros2_ws/analysis)
+repro_ws/
+repro_results/
+
+# A-E re-run workspace (13 Oct 2026): recordings, logs and model copies; the bags are also in ros2_ws/bags
+ablation_ws/bags/
+ablation_ws/logs/
+ablation_ws/simulation_models/
