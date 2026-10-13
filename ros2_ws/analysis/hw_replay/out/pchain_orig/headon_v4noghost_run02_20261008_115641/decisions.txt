@@ -1,0 +1,9 @@
+ROBOT (bag /rosout), t after first person message:
+    +3.98 s  lane rule now follows track 0 (4.93 m ahead), robot keeps LEFT
+    +4.62 s  track 0 pass side fixed: robot keeps LEFT (walker's mean offset -0.39 m over 14 samples)
+REPLAY (this config):
+  setup    side hold: on (the first side is kept unless the walker is more than 0.30 m on the other side)
+  setup    pass side measured against the robot-goal line (side_ref_goal)
+    +0.00 s* lane rule now follows track 0 (4.66 m ahead), robot keeps RIGHT
+    +0.60 s* track 0 pass side fixed: robot keeps RIGHT (walker's mean offset +0.51 m over 13 samples)
+  (* replay times relative to its first decision; the replay runs on bag time, its log stamps are wall time)

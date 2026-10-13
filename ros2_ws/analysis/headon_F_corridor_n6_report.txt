@@ -1,0 +1,145 @@
+
+=== headon_F_corridor_trial1 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                43.8 s
+  path length / mean speed    10.66 m / 0.24 m/s
+  min centre distance         0.034 m  (t = 8.4 s, robot x = -1.05)
+  min surface clearance       -0.405 m
+  robot passed on its         right (-y)
+  max lateral deviation       0.18 m
+  gap when committed (>0.2 m) n/a
+  stopped / spin / reverse    5.3 / 0.8 / 1.5 s
+  wz sign flips               14
+  gap at robot start          11.72 m
+  person start - robot start  -0.3 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.77 m
+  detection -> KF 0.8 m/s      0.78 s
+  max AMCL error              0.272 m
+  plans published             299
+  real-time factor            0.60
+
+=== headon_F_corridor_trial2 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                40.6 s
+  path length / mean speed    10.80 m / 0.27 m/s
+  min centre distance         0.177 m  (t = 8.6 s, robot x = -0.97)
+  min surface clearance       -0.262 m
+  robot passed on its         right (-y)
+  max lateral deviation       0.30 m
+  gap when committed (>0.2 m) 0.45 m
+  stopped / spin / reverse    0.0 / 0.5 / 3.3 s
+  wz sign flips               12
+  gap at robot start          11.82 m
+  person start - robot start  +0.3 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.61 m
+  detection -> KF 0.8 m/s      0.80 s
+  max AMCL error              0.347 m
+  plans published             316
+  real-time factor            0.58
+
+=== headon_F_corridor_trial3 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                41.2 s
+  path length / mean speed    10.79 m / 0.26 m/s
+  min centre distance         0.029 m  (t = 8.3 s, robot x = -0.99)
+  min surface clearance       -0.410 m
+  robot passed on its         left (+y)
+  max lateral deviation       0.18 m
+  gap when committed (>0.2 m) n/a
+  stopped / spin / reverse    0.4 / 0.5 / 2.6 s
+  wz sign flips               13
+  gap at robot start          11.66 m
+  person start - robot start  -0.3 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.87 m
+  detection -> KF 0.8 m/s      0.94 s
+  max AMCL error              0.137 m
+  plans published             318
+  real-time factor            0.58
+
+=== headon_F_corridor_trial4 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                44.8 s
+  path length / mean speed    11.66 m / 0.26 m/s
+  min centre distance         0.042 m  (t = 9.2 s, robot x = -0.62)
+  min surface clearance       -0.397 m
+  robot passed on its         left (+y)
+  max lateral deviation       0.61 m
+  gap when committed (>0.2 m) 1.28 m
+  stopped / spin / reverse    0.5 / 0.4 / 6.4 s
+  wz sign flips               15
+  gap at robot start          12.14 m
+  person start - robot start  +0.8 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.18 m
+  detection -> KF 0.8 m/s      0.87 s
+  max AMCL error              0.252 m
+  plans published             347
+  real-time factor            0.59
+
+=== headon_F_corridor_trial5 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                44.0 s
+  path length / mean speed    10.71 m / 0.24 m/s
+  min centre distance         0.008 m  (t = 8.6 s, robot x = -1.09)
+  min surface clearance       -0.431 m
+  robot passed on its         right (-y)
+  max lateral deviation       0.09 m
+  gap when committed (>0.2 m) n/a
+  stopped / spin / reverse    5.3 / 0.6 / 2.0 s
+  wz sign flips               14
+  gap at robot start          11.87 m
+  person start - robot start  +0.0 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.04 m
+  detection -> KF 0.8 m/s      0.74 s
+  max AMCL error              0.489 m
+  plans published             310
+  real-time factor            0.58
+
+=== headon_F_corridor_trial6 ===
+  reference pose              /sim_ground_truth_pose (exact)
+  goal reached                yes
+  time to goal                40.7 s
+  path length / mean speed    10.89 m / 0.27 m/s
+  min centre distance         0.158 m  (t = 8.9 s, robot x = -0.76)
+  min surface clearance       -0.281 m
+  robot passed on its         left (+y)
+  max lateral deviation       0.34 m
+  gap when committed (>0.2 m) 0.60 m
+  stopped / spin / reverse    0.0 / 0.6 / 3.3 s
+  wz sign flips               14
+  gap at robot start          12.15 m
+  person start - robot start  +0.5 s
+  person speed (GT)           1.19 m/s
+  first detection range       7.60 m
+  detection -> KF 0.8 m/s      0.62 s
+  max AMCL error              0.354 m
+  plans published             289
+  real-time factor            0.65
+
+=== Aggregate: goal reached in 6 / 6 trials ===
+  metric                     mean       sd      min      max   n
+  time_s                   42.519    1.896   40.608   44.820   6
+  min_centre_m              0.075    0.073    0.008    0.177   6
+  min_surface_m            -0.364    0.073   -0.431   -0.262   6
+  max_dev_m                 0.282    0.186    0.089    0.614   6
+  commit_gap_m              0.779    0.442    0.452    1.281   3
+  stopped_s                 1.902    2.613    0.000    5.274   6
+  spin_s                    0.579    0.129    0.432    0.774   6
+  reverse_s                 3.174    1.716    1.530    6.372   6
+  wz_flips                 13.667    1.033   12.000   15.000   6
+  mean_vx                   0.257    0.011    0.243    0.268   6
+  first_det_range_m         7.513    0.328    7.043    7.867   6
+  det_to_kf_s               0.792    0.109    0.623    0.943   6
+  amcl_err_m                0.308    0.119    0.137    0.489   6
+  person_speed              1.189    0.003    1.186    1.193   6
+  rtf                       0.597    0.027    0.575    0.650   6
+  pass side: left (+y) x3, right (-y) x3

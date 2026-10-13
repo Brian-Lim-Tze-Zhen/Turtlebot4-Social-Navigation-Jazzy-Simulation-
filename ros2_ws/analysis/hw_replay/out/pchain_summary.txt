@@ -1,0 +1,13 @@
+# pchain started 2026-10-08 22:00:09, critic 98844e8d
+orig | headon_lanerule_run01_20261005_102208 | profile lane | lane starts 1 | still splits 0 | motion releases 0 | controller active after 3 checks
+fix | headon_lanerule_run01_20261005_102208 | profile lane | lane starts 1 | still splits 1 | motion releases 0 | controller active after 3 checks
+orig | headon_lanerule_run02_20261005_102449 | profile lane | lane starts 1 | still splits 0 | motion releases 0 | controller active after 3 checks
+fix | headon_lanerule_run02_20261005_102449 | profile lane | lane starts 4 | still splits 2 | motion releases 0 | controller active after 3 checks
+orig | headon_lanerule_run03_20261005_102648 | profile lane | lane starts 1 | still splits 0 | motion releases 0 | controller active after 3 checks
+fix | headon_lanerule_run03_20261005_102648 | profile lane | lane starts 1 | still splits 1 | motion releases 0 | controller active after 3 checks
+orig | headon_v4noghost_run02_20261008_115641 | profile noghost | lane starts 1 | still splits 0 | motion releases 0 | controller active after 3 checks
+# pchain STOPPED by me after 3 head-on bags: the still split cut walkers who start from standing (lanerule run01-03); narrower rule follows
+# pchain2 started 2026-10-08 22:06:28, critic 98844e8d
+pchain2 orig | headon_lanerule_run01_20261005_102208 | profile lane | lane starts 1 | still splits 0 | motion releases 0 | controller active after 3 checks
+pchain2 fix | headon_lanerule_run01_20261005_102208 | profile lane | lane starts 1 | still splits 1 | motion releases 0 | controller active after 3 checks
+# pchain2 STOPPED by me after 1 bag: the single-update jump still split a walker at a camera-id switch (cam 84, lanerule run01); same-camera-id version follows

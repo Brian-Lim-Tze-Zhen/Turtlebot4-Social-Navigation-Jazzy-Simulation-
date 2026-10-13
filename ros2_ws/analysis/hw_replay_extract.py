@@ -10,6 +10,8 @@ import os, shutil, sqlite3, sys, yaml
 
 KEEP = ['/turtlebot4/tf', '/turtlebot4/tf_static', '/turtlebot4/odom', '/turtlebot4/scan', '/turtlebot4/plan',
         '/turtlebot4/goal_pose', '/predicted_person_positions', '/social_groups', '/rosout']
+# EXTRA_TOPICS=a,b,c adds topics (8 Oct 2026: identity-node inputs/outputs for the perception replay)
+KEEP += [t for t in os.environ.get('EXTRA_TOPICS', '').split(',') if t]
 src, out = sys.argv[1].rstrip('/'), sys.argv[2].rstrip('/')
 sd = os.path.join(src, 'bag') if os.path.isdir(os.path.join(src, 'bag')) else src
 db_in = [f for f in os.listdir(sd) if f.endswith('.db3')]

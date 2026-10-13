@@ -1,0 +1,10 @@
+headon_rec15_trial01 | 0.682 m | surf +0.243 | left | commit 2.67 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.12) | plans L/R 25/3 | drop -0.40 s | goal yes
+headon_rec15_trial02_a2 | 0.790 m | surf +0.351 | right | commit 3.56 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (-0.06) | plans L/R 0/61 | drop -0.38 s | goal yes
+headon_rec15_trial03_a2 | 0.747 m | surf +0.308 | right | commit 3.35 | s/s/r 0.0/0.1/0.0s | RIGHT->RIGHT (+0.27) | plans L/R 0/28 | drop -0.51 s | goal yes
+headon_rec15_trial04_a2 | 0.729 m | surf +0.290 | right | commit 3.34 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (-0.03) | plans L/R 5/21 | drop -0.18 s | goal yes
+headon_rec15_trial05 | 0.763 m | surf +0.324 | right | commit 3.39 | s/s/r 0.1/0.2/0.0s | RIGHT->RIGHT (-0.05) | plans L/R 3/20 | no drop | goal yes
+headon_rec15_trial06 | 0.812 m | surf +0.373 | right | commit 3.80 | s/s/r 0.0/0.2/0.0s | RIGHT->RIGHT (+0.31) | plans L/R 0/28 | drop -0.51 s | goal yes
+headon_rec15_trial07 | 0.795 m | surf +0.356 | right | commit 4.00 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (+0.10) | plans L/R 4/24 | no drop | goal yes
+headon_rec15_trial08 | 0.735 m | surf +0.296 | right | commit 3.18 | s/s/r 0.0/0.0/0.0s | RIGHT->RIGHT (-0.01) | plans L/R 3/21 | drop -0.24 s | goal yes
+headon_rec15_trial09 | 0.715 m | surf +0.276 | right | commit 2.82 | s/s/r 0.2/0.5/0.0s | RIGHT->RIGHT (+0.20) | plans L/R 1/23 | drop -0.49 s | goal yes
+headon_rec15_trial10 | 0.695 m | surf +0.256 | left | commit 2.71 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.04) | plans L/R 24/0 | no drop | goal yes

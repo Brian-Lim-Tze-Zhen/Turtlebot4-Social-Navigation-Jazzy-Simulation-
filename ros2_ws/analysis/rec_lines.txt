@@ -1,0 +1,1 @@
+headon_rec_trial01 | 0.710 m | surf +0.271 | left | commit 3.09 | s/s/r 0.0/0.0/0.0s | LEFT->LEFT (-0.31) | plans L/R 24/0 | drop -0.51 s | goal yes
