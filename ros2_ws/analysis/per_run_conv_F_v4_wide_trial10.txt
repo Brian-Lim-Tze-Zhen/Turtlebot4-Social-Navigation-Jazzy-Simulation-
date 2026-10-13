@@ -1,0 +1,36 @@
+bag: bags/conv_F_v4_wide_trial10
+position reference: /sim_ground_truth_pose (exact), 1672 samples
+================================================================
+RUN
+  goal reached (reference pose, tol 0.3 m): YES
+  time start->goal: 24.5 s (sim)
+  final pose: (6.15, -0.03)
+  max x reached: 6.15  (pair axis x = 3.00)
+  stopped time (|vx|<0.02, |wz|<0.1): 0.0 s
+  spin-in-place time (|wz|>0.4): 0.0 s
+  min vx (reversing if <0): 0.06 m/s
+  plan goals seen (sim t, goal): 44:(6.0, 0.0)
+  gap window x (2.0, 3.6): 5.8 s, vx mean 0.29 / min 0.25 m/s, |y| max 1.59 m
+================================================================
+CLEARANCE (reference pose, true person poses from SDF)
+  person_1 (3.00,-0.75): min centre 0.839 m, surface +0.400 m at t=58.1 robot (3.08,-1.58)
+  person_2 (3.00,0.75): min centre 2.246 m, surface +1.807 m at t=61.4 robot (3.98,-1.27)
+  reference: narrow_social_distance 0.6 m, social_distance 0.94 m, contact at 0.439 m
+================================================================
+LOCALISATION (AMCL vs ground truth)
+  AMCL error: mean 0.043 m, max 0.116 m (27 samples)
+  worst sample: t=69.9, robot true x=6.10, error along corridor (x) -0.110 m, across (y) -0.037 m
+  max error while in gap window: 0.056 m, max |y| error there 0.040 m
+================================================================
+GROUP DETECTION (/social_groups)
+  msgs 58, narrow 0/58 (0%), buffer min/med/max 0.400/0.400/0.400
+  detected member (lower-y #0) mean (2.851,-0.712) vs person_1 (3.00,-0.75): error 0.154 m
+  detected member (lower-y #1) mean (2.845,0.767) vs person_2 (3.00,0.75): error 0.156 m
+  first group msg at bag t=1791671922.3, last at 1791671967.7
+  last zone mask at true midpoint (3.00,0.00): 90  (narrow expects 35, wide 90)
+================================================================
+PLANNER / SIM
+  /plan msgs 185, through the gap 0
+  RTF (sim/wall over bag): 0.62
+================================================================
+wrote bags/conv_F_v4_wide_trial10/trajectory.csv

@@ -1,0 +1,17 @@
+# Narrow standing pair (2.0 m corridor), 10 Oct 2026. Recorded files of conv_F_v4_narrow_trial1 (final configuration);
+# stage-4 runs: Nav2 parameter file and critic of headon_hwreq_z5_corr_trial1 (critic package b06d253). Control: final configuration rebuilt.
+# lane starts = critic log lines 'pass side fixed' (stage-4 critic) or 'lane rule now follows' (v4 critic) in nav2.log;
+# max|y| = largest distance from the centreline while x < 2.6 m (before the pair at x = 3.0 m); min centre from analyse_F_narrow.py
+conv_F_v4_narrow_trial1  goal SUCCEEDED  lane starts 0  max|y| 0.03 m  min centre 0.733 m
+conv_F_v4_narrow_trial2  goal SUCCEEDED  lane starts 0  max|y| 0.04 m  min centre 0.674 m
+conv_F_v4_narrow_trial3  goal SUCCEEDED  lane starts 0  max|y| 0.04 m  min centre 0.685 m
+conv_F_v4_narrow_trial4  goal SUCCEEDED  lane starts 0  max|y| 0.09 m  min centre 0.674 m
+conv_F_v4_narrow_trial5  goal SUCCEEDED  lane starts 0  max|y| 0.05 m  min centre 0.681 m
+conv_F_v4_narrow_trial6  goal SUCCEEDED  lane starts 0  max|y| 0.13 m  min centre 0.689 m
+conv_F_v4_narrow_repro_ctrl  goal SUCCEEDED  lane starts 0  max|y| 0.07 m  min centre 0.725 m
+conv_F_stage4_narrow_trial1  goal SUCCEEDED  lane starts 2  max|y| 0.05 m  min centre 0.689 m
+conv_F_stage4_narrow_trial2  goal SUCCEEDED  lane starts 2  max|y| 0.02 m  min centre 0.730 m
+conv_F_stage4_narrow_trial3  goal SUCCEEDED  lane starts 3  max|y| 0.53 m  min centre 0.564 m
+conv_F_stage4_narrow_trial4  goal SUCCEEDED  lane starts 3  max|y| 0.14 m  min centre 0.706 m
+conv_F_stage4_narrow_trial5  goal SUCCEEDED  lane starts 2  max|y| 0.07 m  min centre 0.727 m
+conv_F_stage4_narrow_trial6  goal SUCCEEDED  lane starts 2  max|y| 0.04 m  min centre 0.742 m

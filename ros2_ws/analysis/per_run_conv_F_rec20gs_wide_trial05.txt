@@ -1,0 +1,36 @@
+bag: bags/conv_F_rec20gs_wide_trial05
+position reference: /sim_ground_truth_pose (exact), 1639 samples
+================================================================
+RUN
+  goal reached (reference pose, tol 0.3 m): YES
+  time start->goal: 24.6 s (sim)
+  final pose: (6.14, -0.03)
+  max x reached: 6.14  (pair axis x = 3.00)
+  stopped time (|vx|<0.02, |wz|<0.1): 0.0 s
+  spin-in-place time (|wz|>0.4): 0.0 s
+  min vx (reversing if <0): 0.06 m/s
+  plan goals seen (sim t, goal): 39:(6.0, 0.0)
+  gap window x (2.0, 3.6): 5.9 s, vx mean 0.29 / min 0.26 m/s, |y| max 1.67 m
+================================================================
+CLEARANCE (reference pose, true person poses from SDF)
+  person_1 (3.00,-0.75): min centre 0.914 m, surface +0.475 m at t=53.9 robot (3.20,-1.64)
+  person_2 (3.00,0.75): min centre 2.261 m, surface +1.822 m at t=57.5 robot (4.17,-1.19)
+  reference: narrow_social_distance 0.6 m, social_distance 0.94 m, contact at 0.439 m
+================================================================
+LOCALISATION (AMCL vs ground truth)
+  AMCL error: mean 0.063 m, max 0.112 m (28 samples)
+  worst sample: t=63.2, robot true x=5.65, error along corridor (x) -0.112 m, across (y) +0.002 m
+  max error while in gap window: 0.062 m, max |y| error there 0.040 m
+================================================================
+GROUP DETECTION (/social_groups)
+  msgs 59, narrow 0/59 (0%), buffer min/med/max 0.400/0.400/0.400
+  detected member (lower-y #0) mean (2.895,-0.727) vs person_1 (3.00,-0.75): error 0.107 m
+  detected member (lower-y #1) mean (2.892,0.774) vs person_2 (3.00,0.75): error 0.111 m
+  first group msg at bag t=1791575484.0, last at 1791575531.5
+  last zone mask at true midpoint (3.00,0.00): 90  (narrow expects 35, wide 90)
+================================================================
+PLANNER / SIM
+  /plan msgs 191, through the gap 0
+  RTF (sim/wall over bag): 0.61
+================================================================
+wrote bags/conv_F_rec20gs_wide_trial05/trajectory.csv

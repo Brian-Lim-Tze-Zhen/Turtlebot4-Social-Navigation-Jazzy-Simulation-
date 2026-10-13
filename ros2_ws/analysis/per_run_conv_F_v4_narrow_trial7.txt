@@ -1,0 +1,36 @@
+bag: bags/conv_F_v4_narrow_trial7
+position reference: /sim_ground_truth_pose (exact), 1387 samples
+================================================================
+RUN
+  goal reached (reference pose, tol 0.3 m): YES
+  time start->goal: 21.3 s (sim)
+  final pose: (5.96, -0.01)
+  max x reached: 5.96  (pair axis x = 3.00)
+  stopped time (|vx|<0.02, |wz|<0.1): 0.0 s
+  spin-in-place time (|wz|>0.4): 0.0 s
+  min vx (reversing if <0): 0.05 m/s
+  plan goals seen (sim t, goal): 43:(6.0, 0.0)
+  gap window x (2.0, 3.6): 5.3 s, vx mean 0.31 / min 0.27 m/s, |y| max 0.07 m
+================================================================
+CLEARANCE (reference pose, true person poses from SDF)
+  person_1 (3.00,-0.75): min centre 0.721 m, surface +0.282 m at t=56.0 robot (3.05,-0.03)
+  person_2 (3.00,0.75): min centre 0.776 m, surface +0.337 m at t=55.7 robot (2.97,-0.03)
+  reference: narrow_social_distance 0.6 m, social_distance 0.94 m, contact at 0.439 m
+================================================================
+LOCALISATION (AMCL vs ground truth)
+  AMCL error: mean 0.109 m, max 0.158 m (26 samples)
+  worst sample: t=64.2, robot true x=5.51, error along corridor (x) -0.156 m, across (y) -0.028 m
+  max error while in gap window: 0.116 m, max |y| error there 0.020 m
+================================================================
+GROUP DETECTION (/social_groups)
+  msgs 50, narrow 50/50 (100%), buffer min/med/max 0.050/0.159/0.243
+  detected member (lower-y #0) mean (2.963,-0.725) vs person_1 (3.00,-0.75): error 0.045 m
+  detected member (lower-y #1) mean (2.934,0.686) vs person_2 (3.00,0.75): error 0.092 m
+  first group msg at bag t=1791670861.8, last at 1791670900.5
+  last zone mask at true midpoint (3.00,0.00): 35  (narrow expects 35, wide 90)
+================================================================
+PLANNER / SIM
+  /plan msgs 155, through the gap 100
+  RTF (sim/wall over bag): 0.63
+================================================================
+wrote bags/conv_F_v4_narrow_trial7/trajectory.csv

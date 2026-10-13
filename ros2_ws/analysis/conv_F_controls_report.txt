@@ -1,0 +1,26 @@
+# Pair controls, 10 Oct 2026. Recorded files of conv_F_v4_narrow_trial1 (final configuration) rebuilt in repro_ws;
+# CONTROL=nogroups: no zone node and no group detector (the pair members are ordinary people for the cloud and the critic);
+# CONTROL=lethal: zone node with O_SPACE_COST_NARROW 100 instead of 35, otherwise identical. Script run_conv_F_trial_control.sh.
+# route at the pair axis (2.7 <= x <= 3.3): 'through gap' if |y| < 0.6 m; min centre = nearest member, analyse_F_narrow.py trajectory.csv
+ctrl_lethal_narrow_trial1_a2     reached False route did not reach the pair min centre 3.724 m  stopped 1.5 s  spin 0.0 s
+ctrl_lethal_narrow_trial2        reached False route did not reach the pair min centre 3.724 m  stopped 5.7 s  spin 0.0 s
+ctrl_lethal_narrow_trial3        reached False route did not reach the pair min centre 3.724 m  stopped 2.4 s  spin 0.0 s
+ctrl_lethal_narrow_trial4        reached False route did not reach the pair min centre 3.724 m  stopped 1.8 s  spin 0.0 s
+ctrl_lethal_narrow_trial5_a2     reached False route did not reach the pair min centre 3.724 m  stopped 3.8 s  spin 0.0 s
+ctrl_lethal_narrow_trial6_a2     reached False route did not reach the pair min centre 3.724 m  stopped 3.3 s  spin 0.0 s
+ctrl_nogroups_narrow_trial1      reached True  route through gap            min centre 0.598 m  stopped 0.0 s  spin 0.0 s
+ctrl_nogroups_narrow_trial2      reached True  route through gap            min centre 0.651 m  stopped 0.0 s  spin 0.0 s
+ctrl_nogroups_narrow_trial3      reached True  route through gap            min centre 0.592 m  stopped 0.5 s  spin 0.0 s
+ctrl_nogroups_narrow_trial4      reached True  route through gap            min centre 0.610 m  stopped 0.5 s  spin 0.3 s
+ctrl_nogroups_narrow_trial5      reached True  route through gap            min centre 0.621 m  stopped 0.6 s  spin 4.7 s
+ctrl_nogroups_narrow_trial6      reached True  route through gap            min centre 0.636 m  stopped 0.4 s  spin 0.0 s
+ctrl_nogroups_wide_trial1        reached True  route through gap            min centre 0.522 m  stopped 0.4 s  spin 0.1 s
+ctrl_nogroups_wide_trial2        reached True  route through gap            min centre 0.493 m  stopped 3.7 s  spin 3.2 s
+ctrl_nogroups_wide_trial3_a2     reached True  route through gap            min centre 0.520 m  stopped 1.1 s  spin 0.6 s
+ctrl_nogroups_wide_trial4        reached True  route through gap            min centre 0.521 m  stopped 0.4 s  spin 0.0 s
+ctrl_nogroups_wide_trial5        reached True  route through gap            min centre 0.613 m  stopped 0.0 s  spin 0.4 s
+ctrl_nogroups_wide_trial6        reached False route did not reach the pair min centre 0.969 m  stopped 8.8 s  spin 20.3 s
+
+ctrl_lethal_narrow       n=6 reached 0/6  routes {'did not reach the pair': 6}  min centre over passing runs: -
+ctrl_nogroups_narrow     n=6 reached 6/6  routes {'through gap': 6}  min centre over passing runs: 0.618 +/- 0.023 (0.592-0.651, n=6)
+ctrl_nogroups_wide       n=6 reached 5/6  routes {'through gap': 5, 'did not reach the pair': 1}  min centre over passing runs: 0.534 +/- 0.046 (0.493-0.613, n=5)

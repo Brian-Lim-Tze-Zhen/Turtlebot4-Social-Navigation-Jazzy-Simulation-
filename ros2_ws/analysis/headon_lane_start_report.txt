@@ -1,0 +1,13 @@
+headon_rec20gs_trial01     lane start 6.12 m ahead
+headon_rec20gs_trial02     lane start 5.84 m ahead
+headon_rec20gs_trial03     lane start 5.87 m ahead
+headon_rec20gs_trial04     lane start 5.78 m ahead
+headon_rec20gs_trial05     lane start 6.19 m ahead
+headon_rec20gs_trial06     lane start 5.92 m ahead
+headon_rec20gs_trial07     lane start 5.99 m ahead
+headon_rec20gs_trial08     lane start 6.54 m ahead
+headon_rec20gs_trial09     lane start 5.78 m ahead
+headon_rec20gs_trial10     lane start 6.58 m ahead
+lane start      6.06 +/- 0.30 m (5.78 - 6.58), n = 10
+first detection 7.24 +/- 0.26 m
+detection - lane start 1.18 +/- 0.12 m (0.91 - 1.33)

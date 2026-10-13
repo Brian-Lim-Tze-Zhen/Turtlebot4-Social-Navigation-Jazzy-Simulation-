@@ -1,0 +1,4 @@
+conv_F_rec20gs_wide      runs 10  runs with a member lane 0  
+conv_F_rec20gs_narrow    runs 10  runs with a member lane 0  
+conv_F_rec20ng_wide      runs 10  runs with a member lane 0  
+conv_F_rec20ng_narrow    runs 10  runs with a member lane 2  conv_F_rec20ng_narrow_trial02_a2 (1), conv_F_rec20ng_narrow_trial04_a2 (1)

@@ -1,0 +1,12 @@
+NARROW
+reached goal: 10/10
+min_centre_m   0.712 +/- 0.024 (n=10)
+min_surface_m  0.273 +/- 0.024 (n=10)
+time_s         21.415 +/- 0.160 (n=10)
+stopped_s      0.000 +/- 0.000 (n=10)
+WIDE
+reached goal: 10/10
+min_centre_m   0.871 +/- 0.029 (n=10)
+min_surface_m  0.432 +/- 0.029 (n=10)
+time_s         24.631 +/- 0.239 (n=10)
+stopped_s      0.000 +/- 0.000 (n=10)

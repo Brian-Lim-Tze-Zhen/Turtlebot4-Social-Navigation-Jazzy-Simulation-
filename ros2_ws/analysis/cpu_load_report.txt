@@ -1,0 +1,13 @@
+# CPU load per process group, final configuration in simulation, 10 Oct 2026 (repro_ws, snapshot image, laptop Intel Core Ultra 7 255H, 16 logical cores).
+# Sampled once per second from /proc (utime+stime) by cpu_sampler.py inside the trial container; percent of one core; window = robot driving the encounter.
+## head-on: window 80-135 s, 55 samples (cpu_cpu_headon_final.csv)
+## narrow pair: window 70-105 s, 35 samples (cpu_cpu_pair_narrow_final_a3.csv)
+Detector (YOLOv8n-pose, OpenVINO, CPU)     head-on    215% (p95  332)   narrow pair    358% (p95  530)
+Ray range and identity                     head-on     44% (p95   47)   narrow pair     47% (p95   52)
+Kalman predictor and person cloud          head-on     37% (p95   66)   narrow pair     59% (p95   83)
+Group detector and zone node               head-on     37% (p95   40)   narrow pair     38% (p95   41)
+Hold and beep-retry nodes                  head-on     59% (p95   64)   narrow pair      0% (p95    0)
+Nav2 controller incl. SocialCritic         head-on     41% (p95   47)   narrow pair     41% (p95   50)
+Other Nav2 servers                         head-on    128% (p95  134)   narrow pair    129% (p95  152)
+TOTAL (our stack)                          head-on    562% (p95  691)   narrow pair    673% (p95  868)
+# topic rates (head-on bag cpu_headon_final, wall clock, while publishing): person chain 6.5-6.8 Hz, person cloud 7.0 Hz, controller 20.0 Hz, global plan 4.4 Hz, /clock 331 Hz; simulator real-time factor about 0.7
