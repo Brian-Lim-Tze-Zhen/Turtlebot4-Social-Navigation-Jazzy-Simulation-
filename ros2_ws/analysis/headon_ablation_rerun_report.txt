@@ -1,0 +1,123 @@
+Head-on ablation A-E, re-run of 13 Oct 2026 with the August state restored (workspace ablation_ws)
+Script: analysis/headon_ablation_rerun_report.py; metrics by analysis/analyse_avoidance.py, as for the August bags
+
+1. Proof of the condition of every trial (from the files written at the trial)
+trial | launched Nav2 file (md5) | cloud node | live obstacle weight | live SocialCritic | cloud msgs in bag | fused msgs | goal | died
+a_nolayer_rr_t01 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 98 | SUCCEEDED | 0
+a_nolayer_rr_t02_a2 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 97 | SUCCEEDED | 0
+a_nolayer_rr_t03 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 132 | SUCCEEDED | 0
+a_nolayer_rr_t04 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 94 | SUCCEEDED | 0
+a_nolayer_rr_t05 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 117 | SUCCEEDED | 0
+a_nolayer_rr_t06 | social_nav2_ablation_A_nolayer.yaml (2b06d0a2) | false | 20.0 | false | 0 | 129 | SUCCEEDED | 0
+b_critweight20_rr_t01 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 415 | 149 | SUCCEEDED | 0
+b_critweight20_rr_t02 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 423 | 151 | SUCCEEDED | 0
+b_critweight20_rr_t03 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 425 | 69 | SUCCEEDED | 0
+b_critweight20_rr_t04 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 427 | 96 | SUCCEEDED | 0
+b_critweight20_rr_t05_a2 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 408 | 105 | SUCCEEDED | 0
+b_critweight20_rr_t06 | social_nav2_ablation_B_critweight20.yaml (2b06d0a2) | true | 20.0 | false | 419 | 148 | SUCCEEDED | 0
+c_critweight10_rr_t01 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 419 | 98 | SUCCEEDED | 0
+c_critweight10_rr_t02 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 414 | 108 | SUCCEEDED | 0
+c_critweight10_rr_t03 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 419 | 152 | SUCCEEDED | 0
+c_critweight10_rr_t04 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 418 | 99 | SUCCEEDED | 0
+c_critweight10_rr_t05 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 418 | 128 | SUCCEEDED | 0
+c_critweight10_rr_t06 | social_nav2_ablation_C_critweight10.yaml (60ce2ed0) | true | 10.0 | false | 427 | 104 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t01_a2 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 430 | 170 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t02 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 429 | 146 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t03 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 445 | 181 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t04 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 421 | 40 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t05_a2 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 437 | 133 | SUCCEEDED | 0
+d_critweight10_socialcritic_on_rr_t06 | social_nav2_ablation_D_critweight10_socialcritic_on.yaml (6fdc2ff4) | true | 10.0 | true | 433 | 130 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t01 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 437 | 155 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t02 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 414 | 157 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t03 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 431 | 145 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t04 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 463 | 137 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t05 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 426 | 134 | SUCCEEDED | 0
+e_critweight20_socialcritic_on_rr_t06 | social_nav2_ablation_E_critweight20_socialcritic_on.yaml (c4a4c85e) | true | 20.0 | true | 447 | 154 | SUCCEEDED | 0
+
+2. Start of every trial (map frame)
+a_nolayer_rr_t01: robot start (-2.09,0.02) end (8.30,0.01); walker from (7.89,0.00), starts +3.8 s after the robot, gap then 8.56 m
+a_nolayer_rr_t02_a2: robot start (-2.10,0.05) end (8.31,0.08); walker from (7.76,0.00), starts +3.9 s after the robot, gap then 8.49 m
+a_nolayer_rr_t03: robot start (-2.08,0.01) end (8.31,0.06); walker from (7.83,0.00), starts +3.4 s after the robot, gap then 8.64 m
+a_nolayer_rr_t04: robot start (-2.13,0.04) end (8.28,-0.07); walker from (8.00,0.00), starts +3.4 s after the robot, gap then 8.69 m
+a_nolayer_rr_t05: robot start (-2.09,0.01) end (8.32,0.02); walker from (7.77,0.00), starts +3.8 s after the robot, gap then 8.45 m
+a_nolayer_rr_t06: robot start (-2.10,0.01) end (8.31,-0.08); walker from (7.88,0.00), starts +2.5 s after the robot, gap then 8.97 m
+b_critweight20_rr_t01: robot start (-2.11,0.03) end (8.34,-0.09); walker from (7.78,0.00), starts +3.5 s after the robot, gap then 8.62 m
+b_critweight20_rr_t02: robot start (-2.07,0.03) end (8.33,-0.10); walker from (8.00,0.00), starts +3.5 s after the robot, gap then 8.85 m
+b_critweight20_rr_t03: robot start (-2.09,0.01) end (8.33,-0.09); walker from (7.95,0.00), starts +2.4 s after the robot, gap then 9.03 m
+b_critweight20_rr_t04: robot start (-2.09,0.02) end (8.32,-0.09); walker from (7.17,0.00), starts +3.5 s after the robot, gap then 7.96 m
+b_critweight20_rr_t05_a2: robot start (-2.08,0.03) end (8.30,-0.09); walker from (8.00,0.00), starts +3.0 s after the robot, gap then 8.94 m
+b_critweight20_rr_t06: robot start (-2.08,-0.01) end (8.34,-0.11); walker from (8.00,0.00), starts +3.5 s after the robot, gap then 8.89 m
+c_critweight10_rr_t01: robot start (-2.08,0.03) end (8.34,-0.09); walker from (8.00,0.00), starts +2.8 s after the robot, gap then 8.91 m
+c_critweight10_rr_t02: robot start (-2.08,0.02) end (8.29,-0.10); walker from (7.76,0.00), starts +2.5 s after the robot, gap then 8.82 m
+c_critweight10_rr_t03: robot start (-2.09,0.04) end (8.32,-0.11); walker from (7.76,0.00), starts +3.9 s after the robot, gap then 8.41 m
+c_critweight10_rr_t04: robot start (-2.10,0.02) end (8.31,-0.13); walker from (5.61,0.00), starts +5.9 s after the robot, gap then 5.76 m
+c_critweight10_rr_t05: robot start (-2.07,0.02) end (8.30,-0.07); walker from (8.00,0.00), starts +3.5 s after the robot, gap then 8.71 m
+c_critweight10_rr_t06: robot start (-2.09,0.03) end (8.31,-0.08); walker from (7.95,0.00), starts +3.1 s after the robot, gap then 8.86 m
+d_critweight10_socialcritic_on_rr_t01_a2: robot start (-2.08,0.02) end (8.31,-0.08); walker from (8.00,0.00), starts +3.1 s after the robot, gap then 8.86 m
+d_critweight10_socialcritic_on_rr_t02: robot start (-2.10,0.03) end (8.32,-0.10); walker from (7.99,0.00), starts +3.0 s after the robot, gap then 8.95 m
+d_critweight10_socialcritic_on_rr_t03: robot start (-2.09,0.04) end (8.34,-0.09); walker from (7.91,0.00), starts +4.4 s after the robot, gap then 8.44 m
+d_critweight10_socialcritic_on_rr_t04: robot start (-2.11,0.05) end (8.31,-0.10); walker from (8.00,0.00), starts +2.3 s after the robot, gap then 9.23 m
+d_critweight10_socialcritic_on_rr_t05_a2: robot start (-2.10,0.05) end (8.31,-0.10); walker from (7.79,0.00), starts +1.9 s after the robot, gap then 9.04 m
+d_critweight10_socialcritic_on_rr_t06: robot start (-2.08,0.02) end (8.31,-0.08); walker from (8.00,0.00), starts +2.4 s after the robot, gap then 9.09 m
+e_critweight20_socialcritic_on_rr_t01: robot start (-2.06,0.03) end (8.30,-0.08); walker from (7.25,0.00), starts +3.4 s after the robot, gap then 8.02 m
+e_critweight20_socialcritic_on_rr_t02: robot start (-2.09,0.03) end (8.33,-0.09); walker from (7.88,0.00), starts +3.1 s after the robot, gap then 8.78 m
+e_critweight20_socialcritic_on_rr_t03: robot start (-2.10,0.01) end (8.31,-0.09); walker from (8.00,0.00), starts +2.5 s after the robot, gap then 9.28 m
+e_critweight20_socialcritic_on_rr_t04: robot start (-2.08,0.01) end (8.31,-0.09); walker from (7.91,0.00), starts +3.2 s after the robot, gap then 8.75 m
+e_critweight20_socialcritic_on_rr_t05: robot start (-2.11,0.02) end (8.40,-0.05); walker from (7.30,0.00), starts +3.8 s after the robot, gap then 8.00 m
+e_critweight20_socialcritic_on_rr_t06: robot start (-2.11,0.02) end (8.30,-0.07); walker from (7.88,0.00), starts +4.5 s after the robot, gap then 8.36 m
+all 30 trials: robot start x -2.09 +/- 0.01 (min -2.13, max -2.06), y 0.02 +/- 0.01 (min -0.01, max 0.05); walker starts after robot (s) 3.32 +/- 0.77 (min 1.92, max 5.86); gap (m) 8.61 +/- 0.62 (min 5.76, max 9.28)
+August (30 trials): robot start x -1.88 +/- 0.03, y 0.03 +/- 0.03; walker starts after robot 2.38 +/- 1.04 s (min -0.21, max 6.23); gap 8.68 +/- 1.02 m
+
+3. Results per condition (mean, SD with n-1, min, max), re-run and August
+A (a_nolayer)  re-run n=6, August n=6
+  per trial min_distance (re-run): 0.047, 0.024, 0.068, 0.132, 0.090, 0.157
+  per trial min_distance (August): 0.118, 0.153, 0.163, 0.128, 0.186, 0.158
+  min_distance      re-run:   0.086 +/- 0.051 (0.024 - 0.157)  August:   0.151 +/- 0.024 (0.118 - 0.186)
+  max_lateral_dev   re-run:   0.177 +/- 0.067 (0.105 - 0.297)  August:   0.396 +/- 0.068 (0.293 - 0.479)
+  path_ratio        re-run:   1.068 +/- 0.010 (1.056 - 1.081)  August:   1.091 +/- 0.016 (1.077 - 1.122)
+  commit_dist       August:   0.650 +/- 0.519 (0.186 - 1.577)
+  dev_at_min        re-run:  -0.083 +/- 0.069 (-0.148 - 0.041)  August:  -0.139 +/- 0.112 (-0.220 - 0.084)
+B (b_critweight20)  re-run n=6, August n=6
+  per trial min_distance (re-run): 0.710, 0.731, 0.342, 0.685, 0.707, 0.727
+  per trial min_distance (August): 0.714, 0.674, 0.697, 0.650, 0.692, 0.662
+  min_distance      re-run:   0.650 +/- 0.152 (0.342 - 0.731)  August:   0.682 +/- 0.024 (0.650 - 0.714)
+  max_lateral_dev   re-run:   0.878 +/- 0.165 (0.549 - 0.976)  August:   0.964 +/- 0.034 (0.905 - 0.991)
+  path_ratio        re-run:   1.093 +/- 0.014 (1.072 - 1.113)  August:   1.115 +/- 0.006 (1.103 - 1.121)
+  commit_dist       re-run:   3.339 +/- 0.587 (2.261 - 4.024)  August:   3.504 +/- 0.387 (2.876 - 3.957)
+  dev_at_min        re-run:  -0.634 +/- 0.149 (-0.717 - -0.332)  August:  -0.692 +/- 0.043 (-0.745 - -0.628)
+C (c_critweight10)  re-run n=6, August n=6
+  per trial min_distance (re-run): 0.717, 0.704, 0.698, 0.755, 0.703, 0.697
+  per trial min_distance (August): 0.736, 0.739, 0.723, 0.675, 0.696, 0.557
+  min_distance      re-run:   0.712 +/- 0.022 (0.697 - 0.755)  August:   0.688 +/- 0.069 (0.557 - 0.739)
+  max_lateral_dev   re-run:   0.961 +/- 0.022 (0.932 - 0.986)  August:   0.961 +/- 0.055 (0.858 - 1.020)
+  path_ratio        re-run:   1.102 +/- 0.007 (1.092 - 1.109)  August:   1.113 +/- 0.007 (1.106 - 1.124)
+  commit_dist       re-run:   3.645 +/- 0.335 (3.387 - 4.133)  August:   3.710 +/- 0.480 (2.927 - 4.263)
+  dev_at_min        re-run:  -0.699 +/- 0.017 (-0.732 - -0.688)  August:  -0.693 +/- 0.066 (-0.737 - -0.562)
+D (d_critweight10_socialcritic_on)  re-run n=6, August n=6
+  per trial min_distance (re-run): 0.877, 0.516, 0.824, 0.759, 0.825, 0.761
+  per trial min_distance (August): 0.772, 0.822, 0.526, 0.797, 0.762, 0.762
+  min_distance      re-run:   0.760 +/- 0.128 (0.516 - 0.877)  August:   0.740 +/- 0.108 (0.526 - 0.822)
+  max_lateral_dev   re-run:   1.067 +/- 0.111 (0.861 - 1.165)  August:   1.192 +/- 0.106 (1.069 - 1.360)
+  path_ratio        re-run:   1.135 +/- 0.032 (1.103 - 1.182)  August:   1.158 +/- 0.014 (1.146 - 1.179)
+  commit_dist       re-run:   3.244 +/- 0.883 (1.540 - 3.923)  August:   3.264 +/- 0.472 (2.594 - 4.018)
+  dev_at_min        re-run:  -0.752 +/- 0.128 (-0.857 - -0.506)  August:  -0.732 +/- 0.102 (-0.808 - -0.531)
+E (e_critweight20_socialcritic_on)  re-run n=6, August n=6
+  per trial min_distance (re-run): 0.804, 0.777, 0.816, 0.469, 0.759, 0.832
+  per trial min_distance (August): 0.823, 0.798, 0.760, 0.799, 0.917, 0.848
+  min_distance      re-run:   0.743 +/- 0.137 (0.469 - 0.832)  August:   0.824 +/- 0.054 (0.760 - 0.917)
+  max_lateral_dev   re-run:   1.022 +/- 0.124 (0.792 - 1.139)  August:   1.236 +/- 0.159 (1.018 - 1.387)
+  path_ratio        re-run:   1.131 +/- 0.029 (1.094 - 1.183)  August:   1.162 +/- 0.014 (1.139 - 1.178)
+  commit_dist       re-run:   3.609 +/- 0.167 (3.434 - 3.884)  August:   3.720 +/- 0.242 (3.464 - 4.156)
+  dev_at_min        re-run:  -0.727 +/- 0.137 (-0.813 - -0.452)  August:  -0.823 +/- 0.029 (-0.856 - -0.786)
+
+4. Exact two-sided Mann-Whitney tests on min_distance
+re-run A vs B: U = 0.0, p = 0.0022
+re-run B vs C: U = 18.0, p = 1.0000
+re-run C vs D: U = 6.0, p = 0.0649
+re-run B vs E: U = 5.0, p = 0.0411
+re-run D vs E: U = 20.0, p = 0.8182
+condition A, re-run vs August: U = 5.0, p = 0.0411
+condition B, re-run vs August: U = 25.0, p = 0.3095
+condition C, re-run vs August: U = 21.0, p = 0.6991
+condition D, re-run vs August: U = 20.0, p = 0.7835
+condition E, re-run vs August: U = 11.0, p = 0.3095

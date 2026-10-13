@@ -4,7 +4,10 @@ import sys, math, glob, os, statistics
 sys.path.insert(0, "/ws/analysis")
 import analyse_avoidance as aa
 rows = []
-for d in sorted(glob.glob("/ws/bags/[a-e]_*_t0*/data")):
+# optional argument "rr": the re-run bags (*_rr_t*) instead of the first run
+PAT = "/ws/bags/[a-e]_*_rr_t0*/data" if sys.argv[1:] == ["rr"] else "/ws/bags/[a-e]_*_t0*/data"
+for d in sorted(glob.glob(PAT)):
+    if sys.argv[1:] != ["rr"] and "_rr_t" in d: continue
     name = os.path.basename(os.path.dirname(d))
     if "_1.2_" in name: continue
     data = aa.read_bag(d)

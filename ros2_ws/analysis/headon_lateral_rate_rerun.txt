@@ -1,0 +1,15 @@
+Lateral rate of the robot, re-run bags of B and E, computed 13 Oct 2026. Script: analysis/headon_lateral_rate.py rr
+  b_critweight20_rr_t01: mean lateral rate from 0.1 to 0.7 m offset 0.11 m/s; peak over 1 s 0.25 m/s; largest offset 1.01 m
+  b_critweight20_rr_t02: mean lateral rate from 0.1 to 0.7 m offset 0.14 m/s; peak over 1 s 0.23 m/s; largest offset 1.00 m
+  b_critweight20_rr_t03: offset of 0.7 m not reached (largest 0.58 m)
+  b_critweight20_rr_t04: mean lateral rate from 0.1 to 0.7 m offset 0.18 m/s; peak over 1 s 0.24 m/s; largest offset 0.95 m
+  b_critweight20_rr_t05_a2: mean lateral rate from 0.1 to 0.7 m offset 0.17 m/s; peak over 1 s 0.25 m/s; largest offset 1.00 m
+  b_critweight20_rr_t06: mean lateral rate from 0.1 to 0.7 m offset 0.15 m/s; peak over 1 s 0.23 m/s; largest offset 0.92 m
+B: cloud, open world (re-run): mean lateral rate 0.15 +/- 0.02 m/s (n=5), peak 0.22 m/s
+  e_critweight20_socialcritic_on_rr_t01: mean lateral rate from 0.1 to 0.7 m offset 0.15 m/s; peak over 1 s 0.29 m/s; largest offset 1.17 m
+  e_critweight20_socialcritic_on_rr_t02: mean lateral rate from 0.1 to 0.7 m offset 0.20 m/s; peak over 1 s 0.25 m/s; largest offset 1.03 m
+  e_critweight20_socialcritic_on_rr_t03: mean lateral rate from 0.1 to 0.7 m offset 0.18 m/s; peak over 1 s 0.25 m/s; largest offset 1.06 m
+  e_critweight20_socialcritic_on_rr_t04: mean lateral rate from 0.1 to 0.7 m offset 0.12 m/s; peak over 1 s 0.22 m/s; largest offset 0.81 m
+  e_critweight20_socialcritic_on_rr_t05: mean lateral rate from 0.1 to 0.7 m offset 0.18 m/s; peak over 1 s 0.26 m/s; largest offset 1.07 m
+  e_critweight20_socialcritic_on_rr_t06: mean lateral rate from 0.1 to 0.7 m offset 0.17 m/s; peak over 1 s 0.27 m/s; largest offset 1.15 m
+E: cloud and critic, open world (re-run): mean lateral rate 0.16 +/- 0.03 m/s (n=6), peak 0.26 m/s

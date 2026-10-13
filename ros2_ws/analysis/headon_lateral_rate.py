@@ -28,7 +28,11 @@ def rate(path, lo=0.1, hi=0.7):
         while j < len(path) and path[j][0] - path[i][0] < 1.0: j += 1
         if j < len(path): peak = max(peak, abs(path[j][2] - path[i][2]) / (path[j][0] - path[i][0]))
     return (hi - lo) / (t_hi - t_lo) if t_lo and t_hi and t_hi > t_lo else None, peak, mx
-for label, pat, gt in (("B: cloud, open world", "/ws/bags/b_critweight20_t0*/data", False), ("E: cloud and critic, open world", "/ws/bags/e_critweight20_socialcritic_on_t0*/data", False), ("lane rules, corridor", "/ws/bags/headon_hwreq_z5_corr_trial*/data", True)):
+# optional argument "rr": the B and E bags of the re-run with recorded conditions instead of the first run
+SETS = (("B: cloud, open world", "/ws/bags/b_critweight20_t0*/data", False), ("E: cloud and critic, open world", "/ws/bags/e_critweight20_socialcritic_on_t0*/data", False), ("lane rules, corridor", "/ws/bags/headon_hwreq_z5_corr_trial*/data", True))
+if sys.argv[1:] == ["rr"]:
+    SETS = (("B: cloud, open world (re-run)", "/ws/bags/b_critweight20_rr_t0*/data", False), ("E: cloud and critic, open world (re-run)", "/ws/bags/e_critweight20_socialcritic_on_rr_t0*/data", False))
+for label, pat, gt in SETS:
     R = []
     for d in sorted(glob.glob(pat)):
         if gt: path = gt_path(d)

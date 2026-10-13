@@ -1,0 +1,46 @@
+Trials: re-run (*_rr_t*)
+
+A: n = 6
+  plan bent at gap (m): 2.13 +/- 0.13 (min 2.02, max 2.33, n=6); missing 0
+  turn began at gap (m): 1.94 +/- 0.20 (min 1.68, max 2.30, n=6); missing 0
+  commit (0.20 m off line) at gap (m): none reached
+  heading off the line at 5 m (deg): 0.67 +/- 0.82 (min 0.00, max 2.00, n=6)
+  heading off the line at 3 m (deg): 0.83 +/- 0.41 (min 0.00, max 1.00, n=6)
+  heading off the line at 2 m (deg): 1.17 +/- 1.60 (min 0.00, max 4.00, n=6)
+  per trial: 1: plan 2.03 turn 1.97 commit None; 2_a2: plan 2.33 turn 2.3 commit None; 3: plan 2.02 turn 1.89 commit None; 4: plan 2.02 turn 1.88 commit None; 5: plan 2.23 turn 1.68 commit None; 6: plan 2.13 turn 1.94 commit None
+
+B: n = 6
+  plan bent at gap (m): 7.00 +/- 0.28 (min 6.81, max 7.56, n=6); missing 0
+  turn began at gap (m): 6.68 +/- 0.29 (min 6.35, max 7.03, n=6); missing 0
+  commit (0.20 m off line) at gap (m): 3.31 +/- 0.50 (min 2.43, max 3.94, n=6); missing 0
+  heading off the line at 5 m (deg): 12.50 +/- 4.46 (min 4.00, max 16.00, n=6)
+  heading off the line at 3 m (deg): 35.83 +/- 3.31 (min 30.00, max 39.00, n=6)
+  heading off the line at 2 m (deg): 46.17 +/- 10.91 (min 24.00, max 52.00, n=6)
+  per trial: 1: plan 6.81 turn 6.39 commit 3.62; 2: plan 7.56 turn 7.03 commit 3.94; 3: plan 7.04 turn 7.0 commit 2.43; 4: plan 6.82 turn 6.63 commit 3.25; 5_a2: plan 6.87 turn 6.35 commit 3.3; 6: plan 6.93 turn 6.68 commit 3.34
+
+C: n = 6
+  plan bent at gap (m): 6.73 +/- 0.59 (min 5.60, max 7.11, n=6); missing 0
+  turn began at gap (m): 6.51 +/- 0.39 (min 5.78, max 6.84, n=6); missing 0
+  commit (0.20 m off line) at gap (m): 3.54 +/- 0.28 (min 3.29, max 4.00, n=6); missing 0
+  heading off the line at 5 m (deg): 16.50 +/- 2.51 (min 14.00, max 21.00, n=6)
+  heading off the line at 3 m (deg): 37.00 +/- 1.79 (min 35.00, max 40.00, n=6)
+  heading off the line at 2 m (deg): 50.67 +/- 1.63 (min 49.00, max 53.00, n=6)
+  per trial: 1: plan 7.01 turn 6.75 commit 3.36; 2: plan 7.11 turn 6.6 commit 3.49; 3: plan 7.1 turn 6.84 commit 3.34; 4: plan 5.6 turn 5.78 commit 4.0; 5: plan 6.56 turn 6.38 commit 3.76; 6: plan 7.02 turn 6.7 commit 3.29
+
+D: n = 6
+  plan bent at gap (m): 6.98 +/- 0.28 (min 6.56, max 7.34, n=6); missing 0
+  turn began at gap (m): 6.39 +/- 0.43 (min 6.07, max 7.11, n=6); missing 0
+  commit (0.20 m off line) at gap (m): 3.25 +/- 0.95 (min 1.47, max 4.13, n=6); missing 0
+  heading off the line at 5 m (deg): 12.67 +/- 3.83 (min 9.00, max 18.00, n=6)
+  heading off the line at 3 m (deg): 45.67 +/- 9.03 (min 28.00, max 53.00, n=6)
+  heading off the line at 2 m (deg): 67.83 +/- 10.55 (min 61.00, max 89.00, n=6)
+  per trial: 1_a2: plan 7.34 turn 7.11 commit 3.97; 2: plan 6.81 turn 6.14 commit 1.47; 3: plan 6.56 turn 6.21 commit 3.42; 4: plan 7.07 turn 6.1 commit 3.31; 5_a2: plan 7.18 turn 6.73 commit 4.13; 6: plan 6.91 turn 6.07 commit 3.23
+
+E: n = 6
+  plan bent at gap (m): 6.90 +/- 0.21 (min 6.59, max 7.12, n=6); missing 0
+  turn began at gap (m): 6.56 +/- 0.21 (min 6.24, max 6.81, n=6); missing 0
+  commit (0.20 m off line) at gap (m): 3.50 +/- 0.18 (min 3.25, max 3.73, n=6); missing 0
+  heading off the line at 5 m (deg): 15.00 +/- 1.10 (min 13.00, max 16.00, n=6)
+  heading off the line at 3 m (deg): 52.50 +/- 6.09 (min 44.00, max 59.00, n=6)
+  heading off the line at 2 m (deg): 75.17 +/- 19.63 (min 58.00, max 113.00, n=6)
+  per trial: 1: plan 7.12 turn 6.64 commit 3.69; 2: plan 7.1 turn 6.81 commit 3.44; 3: plan 6.93 turn 6.73 commit 3.73; 4: plan 6.95 turn 6.52 commit 3.25; 5: plan 6.71 turn 6.4 commit 3.43; 6: plan 6.59 turn 6.24 commit 3.48

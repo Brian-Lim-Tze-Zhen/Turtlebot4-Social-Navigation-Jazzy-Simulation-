@@ -1,0 +1,50 @@
+Side of the global plan in the A-E ablation, computed 13 Oct 2026. Script: analysis/headon_ablation_plan_side.py (wrong side = left; the robot passed on its right in every trial)
+trial | min dist (m) | robot side at closest approach | plan side changes (side@gap m) | wrong-side plan between 6.5 and 3.0 m gap (m of approach)
+b_critweight20_rr_t01 | 0.710 | right | R@6.6 | 0.00
+b_critweight20_rr_t02 | 0.731 | right | R@7.4 -> L@5.6 -> R@5.3 | 0.30
+b_critweight20_rr_t03 | 0.342 | right | L@7.0 -> R@6.4 -> L@3.1 -> R@2.6 -> L@1.0 | 0.29
+b_critweight20_rr_t04 | 0.685 | right | R@6.8 | 0.00
+b_critweight20_rr_t05_a2 | 0.707 | right | R@6.8 | 0.00
+b_critweight20_rr_t06 | 0.727 | right | R@6.8 | 0.00
+c_critweight10_rr_t01 | 0.717 | right | R@6.9 | 0.00
+c_critweight10_rr_t02 | 0.704 | right | L@7.0 -> R@6.8 | 0.00
+c_critweight10_rr_t03 | 0.698 | right | R@6.9 | 0.00
+c_critweight10_rr_t04 | 0.755 | right | L@6.4 -> R@6.3 | 0.05
+c_critweight10_rr_t05 | 0.703 | right | R@6.4 | 0.00
+c_critweight10_rr_t06 | 0.697 | right | R@6.8 | 0.00
+d_critweight10_socialcritic_on_rr_t01_a2 | 0.877 | right | R@7.1 | 0.00
+d_critweight10_socialcritic_on_rr_t02 | 0.516 | right | R@6.6 -> L@6.5 -> R@5.4 -> L@1.8 -> R@1.5 | 1.11
+d_critweight10_socialcritic_on_rr_t03 | 0.824 | right | R@6.4 | 0.00
+d_critweight10_socialcritic_on_rr_t04 | 0.759 | right | L@6.9 -> R@6.6 -> L@2.8 -> R@2.3 | 0.00
+d_critweight10_socialcritic_on_rr_t05_a2 | 0.825 | right | R@7.0 | 0.00
+d_critweight10_socialcritic_on_rr_t06 | 0.761 | right | R@6.7 -> L@6.7 -> R@6.4 | 0.12
+e_critweight20_socialcritic_on_rr_t01 | 0.804 | right | R@7.1 -> L@2.0 -> R@1.8 | 0.00
+e_critweight20_socialcritic_on_rr_t02 | 0.777 | right | R@7.0 | 0.00
+e_critweight20_socialcritic_on_rr_t03 | 0.816 | right | R@6.9 | 0.00
+e_critweight20_socialcritic_on_rr_t04 | 0.469 | right | R@6.7 -> L@2.0 -> R@0.9 | 0.00
+e_critweight20_socialcritic_on_rr_t05 | 0.759 | right | R@6.5 | 0.00
+e_critweight20_socialcritic_on_rr_t06 | 0.832 | right | R@6.6 | 0.00
+b_critweight20_t01 | 0.714 | right | R@7.0 | 0.00
+b_critweight20_t02 | 0.674 | right | R@6.6 | 0.00
+b_critweight20_t03 | 0.697 | right | R@7.0 | 0.00
+b_critweight20_t04 | 0.650 | right | L@4.3 -> R@4.2 | 0.03
+b_critweight20_t05 | 0.692 | right | R@6.7 -> L@6.7 -> R@6.4 | 0.12
+b_critweight20_t06 | 0.662 | right | L@6.8 -> R@6.2 | 0.27
+c_critweight10_t01 | 0.736 | right | R@6.6 | 0.00
+c_critweight10_t02 | 0.739 | right | R@6.7 | 0.00
+c_critweight10_t03 | 0.723 | right | R@6.8 | 0.00
+c_critweight10_t04 | 0.675 | right | R@6.6 | 0.00
+c_critweight10_t05 | 0.696 | right | R@6.7 | 0.00
+c_critweight10_t06 | 0.557 | right | R@6.7 -> L@4.7 -> R@4.1 | 0.54
+d_critweight10_socialcritic_on_t01 | 0.772 | right | R@6.2 | 0.00
+d_critweight10_socialcritic_on_t02 | 0.822 | right | R@6.9 -> L@2.6 -> R@2.3 | 0.00
+d_critweight10_socialcritic_on_t03 | 0.526 | right | L@6.4 -> R@6.1 -> L@3.7 -> R@3.2 | 0.86
+d_critweight10_socialcritic_on_t04 | 0.797 | right | R@7.1 | 0.00
+d_critweight10_socialcritic_on_t05 | 0.762 | right | R@6.5 | 0.00
+d_critweight10_socialcritic_on_t06 | 0.762 | right | R@6.6 | 0.00
+e_critweight20_socialcritic_on_t01 | 0.823 | right | R@6.4 -> L@2.2 -> R@2.0 | 0.00
+e_critweight20_socialcritic_on_t02 | 0.798 | right | R@6.6 | 0.00
+e_critweight20_socialcritic_on_t03 | 0.760 | right | R@6.7 | 0.00
+e_critweight20_socialcritic_on_t04 | 0.799 | right | R@6.5 | 0.00
+e_critweight20_socialcritic_on_t05 | 0.917 | right | R@7.2 | 0.00
+e_critweight20_socialcritic_on_t06 | 0.848 | right | R@7.0 | 0.00

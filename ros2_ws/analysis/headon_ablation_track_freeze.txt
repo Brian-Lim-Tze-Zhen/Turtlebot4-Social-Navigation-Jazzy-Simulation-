@@ -1,0 +1,50 @@
+Frozen predictor estimate when the camera loses the walker, A-E ablation, computed 13 Oct 2026. Script: analysis/headon_ablation_track_freeze.py; first-run B and C did not record /fused_person_positions
+trial | min dist (m) | longest freeze (s, sim) | gap at its start (m) | robot y then (m) | frozen y (m) | frozen vx, vy (m/s) | min cmd v (m/s) | most negative cmd w (rad/s)
+b_critweight20_rr_t01 | 0.710 | 0.90 | 3.05 | -0.23 | -0.169 | -1.17, -0.08 | +0.27 | -0.47
+b_critweight20_rr_t02 | 0.731 | 0.90 | 3.00 | -0.28 | -0.250 | -1.21, -0.10 | +0.27 | -0.48
+b_critweight20_rr_t03 | 0.342 | 1.30 | 2.85 | -0.18 | -0.104 | -0.34, -0.03 | -0.14 | -0.60
+b_critweight20_rr_t04 | 0.685 | 0.90 | 3.30 | -0.19 | -0.205 | -1.14, -0.07 | +0.28 | -0.42
+b_critweight20_rr_t05_a2 | 0.707 | 1.00 | 3.08 | -0.21 | -0.101 | -1.19, -0.03 | +0.27 | -0.45
+b_critweight20_rr_t06 | 0.727 | 0.90 | 3.62 | -0.22 | -0.138 | -1.25, -0.00 | +0.29 | -0.38
+c_critweight10_rr_t01 | 0.717 | 1.00 | 3.34 | -0.19 | -0.164 | -1.11, -0.09 | +0.28 | -0.38
+c_critweight10_rr_t02 | 0.704 | 1.00 | 2.99 | -0.24 | -0.207 | -1.17, -0.04 | +0.28 | -0.45
+c_critweight10_rr_t03 | 0.698 | 1.00 | 2.91 | -0.23 | -0.182 | -1.06, -0.11 | +0.26 | -0.47
+c_critweight10_rr_t04 | 0.755 | 1.00 | 7.44 | -0.02 | +0.353 | +0.00, +0.00 | +0.30 | -0.08
+c_critweight10_rr_t05 | 0.703 | 1.10 | 3.11 | -0.26 | -0.246 | -1.14, -0.07 | +0.27 | -0.53
+c_critweight10_rr_t06 | 0.697 | 0.90 | 3.29 | -0.19 | -0.121 | -1.17, -0.04 | +0.28 | -0.41
+d_critweight10_socialcritic_on_rr_t01_a2 | 0.877 | 0.90 | 3.90 | -0.20 | -0.193 | -1.18, -0.10 | +0.17 | -0.74
+d_critweight10_socialcritic_on_rr_t02 | 0.516 | 0.90 | 3.08 | -0.01 | -0.070 | -1.17, -0.02 | +0.06 | -1.18
+d_critweight10_socialcritic_on_rr_t03 | 0.824 | 1.10 | 3.45 | -0.18 | -0.171 | -1.12, -0.14 | +0.04 | -1.35
+d_critweight10_socialcritic_on_rr_t04 | 0.759 | 0.70 | 3.40 | -0.19 | -0.142 | +0.00, +0.00 | +0.21 | -0.85
+d_critweight10_socialcritic_on_rr_t05_a2 | 0.825 | 1.00 | 3.73 | -0.20 | -0.067 | -1.11, -0.12 | +0.25 | -0.68
+d_critweight10_socialcritic_on_rr_t06 | 0.761 | 1.10 | 3.49 | -0.15 | -0.057 | -1.12, -0.09 | +0.26 | -0.69
+e_critweight20_socialcritic_on_rr_t01 | 0.804 | 1.00 | 3.63 | -0.21 | -0.190 | -1.12, -0.07 | +0.24 | -0.68
+e_critweight20_socialcritic_on_rr_t02 | 0.777 | 0.90 | 3.79 | -0.15 | -0.183 | -1.17, -0.08 | +0.19 | -0.91
+e_critweight20_socialcritic_on_rr_t03 | 0.816 | 1.10 | 3.74 | -0.20 | -0.127 | -1.15, -0.12 | +0.18 | -0.88
+e_critweight20_socialcritic_on_rr_t04 | 0.469 | 0.90 | 3.48 | -0.22 | -0.198 | -1.17, -0.14 | -0.28 | -1.80
+e_critweight20_socialcritic_on_rr_t05 | 0.759 | 1.01 | 3.61 | -0.18 | -0.174 | -1.08, -0.06 | +0.20 | -0.66
+e_critweight20_socialcritic_on_rr_t06 | 0.832 | 1.01 | 3.94 | -0.17 | -0.271 | -1.19, -0.10 | +0.13 | -1.00
+b_critweight20_t01 | 0.714 | /fused_person_positions not recorded
+b_critweight20_t02 | 0.674 | /fused_person_positions not recorded
+b_critweight20_t03 | 0.697 | /fused_person_positions not recorded
+b_critweight20_t04 | 0.650 | /fused_person_positions not recorded
+b_critweight20_t05 | 0.692 | /fused_person_positions not recorded
+b_critweight20_t06 | 0.662 | /fused_person_positions not recorded
+c_critweight10_t01 | 0.736 | /fused_person_positions not recorded
+c_critweight10_t02 | 0.739 | /fused_person_positions not recorded
+c_critweight10_t03 | 0.723 | /fused_person_positions not recorded
+c_critweight10_t04 | 0.675 | /fused_person_positions not recorded
+c_critweight10_t05 | 0.696 | /fused_person_positions not recorded
+c_critweight10_t06 | 0.557 | /fused_person_positions not recorded
+d_critweight10_socialcritic_on_t01 | 0.772 | 0.99 | 3.32 | -0.14 | -0.163 | -1.13, -0.11 | +0.11 | -0.95
+d_critweight10_socialcritic_on_t02 | 0.822 | 0.50 | 3.13 | -0.24 | -0.101 | +0.00, +0.00 | +0.16 | -0.76
+d_critweight10_socialcritic_on_t03 | 0.526 | 0.80 | 2.67 | -0.16 | -0.124 | -0.84, -0.00 | +0.19 | -0.74
+d_critweight10_socialcritic_on_t04 | 0.797 | 1.01 | 3.31 | -0.23 | -0.066 | -1.16, -0.14 | +0.08 | -0.78
+d_critweight10_socialcritic_on_t05 | 0.762 | 0.91 | 3.32 | -0.17 | -0.024 | -1.14, -0.06 | +0.29 | -0.79
+d_critweight10_socialcritic_on_t06 | 0.762 | 1.00 | 3.34 | -0.19 | -0.143 | -1.12, -0.09 | +0.02 | -0.85
+e_critweight20_socialcritic_on_t01 | 0.823 | 1.11 | 3.46 | -0.22 | -0.223 | -1.15, -0.13 | +0.01 | -1.33
+e_critweight20_socialcritic_on_t02 | 0.798 | 1.00 | 3.37 | -0.17 | -0.088 | -1.11, -0.12 | +0.24 | -0.83
+e_critweight20_socialcritic_on_t03 | 0.760 | 0.90 | 3.57 | -0.11 | -0.151 | -1.18, -0.10 | +0.01 | -0.82
+e_critweight20_socialcritic_on_t04 | 0.799 | 0.91 | 3.82 | -0.17 | -0.166 | -1.12, -0.08 | +0.16 | -0.92
+e_critweight20_socialcritic_on_t05 | 0.917 | 0.80 | 3.45 | -0.28 | -0.222 | -1.18, -0.13 | +0.25 | -1.04
+e_critweight20_socialcritic_on_t06 | 0.848 | 0.90 | 3.47 | -0.20 | -0.078 | -1.17, -0.14 | +0.10 | -0.89
