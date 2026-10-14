@@ -2,6 +2,37 @@
 
 > **Start with [HOW_TO_RUN.md](HOW_TO_RUN.md)**: folder map, set-up, demos, and the command, bags and report of every simulation experiment in the thesis. This README keeps the development notes up to 4 October 2026.
 
+## Results
+
+### Head-on walker: the robot moves aside early
+
+![Head-on walker in simulation](docs/media/headon_sim.gif)
+
+*Simulation, 2.5 m corridor, walker at 1.2 m/s, played at 2x speed. This is a demonstration run of 4 October 2026 with the lane rules; the robot passed on the right at 0.74 m between centres without stopping.*
+
+Ten trials per configuration (`ros2_ws/analysis/*_n10_report.txt`). The target is 0.8 m between the centres of robot and person.
+
+| Configuration | Closest distance between centres (m) | Stopped (s) | Time to goal (s) | Goal reached |
+|---|---|---|---|---|
+| Baseline: person cloud, no lane rules | 0.08 ± 0.07 (contact) | 2.4 ± 2.5 | 42.8 ± 1.6 | 10 / 10 |
+| Lane rules | 0.84 ± 0.04 | 0.0 | 37.3 ± 0.4 | 10 / 10 |
+| Final configuration (as on the robot) | 0.76 ± 0.07 | 0.0 | 37.7 ± 0.4 | 10 / 10 |
+
+### Standing pair: around in a wide hallway, between in a narrow corridor
+
+![Standing pair on the robot](docs/media/conversation_pair_robot.gif)
+
+*Real TurtleBot 4, 9 October 2026, played at 1.5x speed; faces blurred. Left: in the wide hallway the robot goes around the pair. Right: in the narrow corridor there is no way around, so it passes between them without stopping.*
+
+The same configuration in simulation, ten trials each (`ros2_ws/analysis/conv_F_rec20gs_n10_report.txt`):
+
+| Case | Robot's path | Closest distance between centres (m) | Stopped (s) | Time to goal (s) | Goal reached |
+|---|---|---|---|---|---|
+| Wide | around the pair | 0.87 ± 0.03 | 0.0 | 24.6 ± 0.2 | 10 / 10 |
+| Narrow | between the members | 0.71 ± 0.02 | 0.0 | 21.4 ± 0.2 | 10 / 10 |
+
+How to repeat these runs: [HOW_TO_RUN.md](HOW_TO_RUN.md), section 4.
+
 Predictive, social-aware human-obstacle representation for Nav2, using
 YOLO + ByteTrack detection, a Kalman-filter motion predictor, and a
 direction-oriented elliptical risk zone published into the local costmap.
