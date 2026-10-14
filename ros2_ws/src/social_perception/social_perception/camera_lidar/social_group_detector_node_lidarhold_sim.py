@@ -2,7 +2,7 @@
 """
 social_group_detector_node.py
 
-Combines combined_facing.py's gaze-first + VLM-fallback facing
+Combines combined_facing.py's gaze (pose keypoint) facing
 classifier with group_formation_detector.py's live tracking structure,
 plus Option 1 (corridor-aware zone buffer shrinking) using the local
 costmap.
@@ -17,7 +17,7 @@ SCOPE - what this does and does not do, read before deploying:
     NOT included. This file is scoped to conversation/companion
     dyads + Option 1 only, to keep it reviewable.
   - UNTESTED against real hardware or a real costmap. The facing
-    classifier logic (gaze + VLM, dedup, confidence gating, flipped
+    classifier logic (gaze, dedup, confidence gating, flipped
     ear convention, side_by_side/diverging labels) is the same code
     validated against 6 real photos in combined_facing.py - that part
     is trustworthy. The costmap clearance probing and buffer-shrink
@@ -49,9 +49,6 @@ import time
 
 import numpy as np
 import cv2
-import open_clip
-import torch
-from PIL import Image as PILImage
 
 import rclpy
 from rclpy.node import Node
@@ -92,9 +89,7 @@ BBOX_MAX_AGE = 5.0               # s; loosened from the original 0.5s -
 # 6 real photos there - see that file's history for how each was found).
 KPT_MIN_CONF = 0.30
 KPT_PRESENCE_CONF = 0.20
-VLM_MIN_CONFIDENCE = 0.55
 DEDUP_IOU_THRESHOLD = 0.45
-PROMPTS = ["people facing each other", "people not facing each other"]
 
 # Zone geometry
 ZONE_BUFFER = 0.4                # m; nominal buffer (group_formation_detector.py)
@@ -165,43 +160,14 @@ class TrackState:
 
 
 # =======================================================================
-# Facing classifier - ported from combined_facing.py, unchanged logic.
+# Facing classifier - ported from combined_facing.py, gaze only.
+# The MobileCLIP fallback was removed: it never ran, because every case
+# where the gaze check has no answer is a missing-keypoints case, which
+# skipped the fallback anyway.
 # =======================================================================
 class FacingClassifier:
     def __init__(self, pose_model_path="yolov8n-pose.pt"):
-        self.clip_model = None  # lazy-loaded on first VLM fallback use
-        self.clip_preprocess = None
-        self.clip_text_features = None
         self.pose_model = YOLO(pose_model_path)
-        self._no_signal = False
-
-    def _ensure_vlm_loaded(self):
-        if self.clip_model is not None:
-            return
-        self.clip_model, _, self.clip_preprocess = open_clip.create_model_and_transforms(
-            "MobileCLIP-S1", pretrained="datacompdr"
-        )
-        self.clip_model.eval()
-        tokenizer = open_clip.get_tokenizer("MobileCLIP-S1")
-        text_tokens = tokenizer(PROMPTS)
-        with torch.no_grad():
-            text_features = self.clip_model.encode_text(text_tokens)
-            self.clip_text_features = text_features / text_features.norm(dim=-1, keepdim=True)
-
-    def classify_vlm(self, crop_bgr):
-        self._ensure_vlm_loaded()
-        crop_rgb = crop_bgr[:, :, ::-1]
-        pil_image = PILImage.fromarray(crop_rgb)
-        image_input = self.clip_preprocess(pil_image).unsqueeze(0)
-        with torch.no_grad():
-            image_features = self.clip_model.encode_image(image_input)
-            image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-            similarities = (100.0 * image_features @ self.clip_text_features.T).softmax(dim=-1)
-        best_idx = int(similarities.argmax())
-        best_score = float(similarities[0, best_idx])
-        if best_score < VLM_MIN_CONFIDENCE:
-            return None
-        return best_idx == 0
 
     @staticmethod
     def _extract_head_heading(kpts):
@@ -276,7 +242,6 @@ class FacingClassifier:
 
     def classify_gaze_dyad(self, crop_bgr, debug_log=None):
         """Returns "facing" / "side_by_side" / "diverging" / None."""
-        self._no_signal = False
         results = self.pose_model(crop_bgr, verbose=False)[0]
         kpts_list = results.keypoints.xy.cpu().numpy()
         boxes_list = results.boxes.xyxy.cpu().numpy()
@@ -285,7 +250,6 @@ class FacingClassifier:
 
         kpts_list, boxes_list, conf_list = self._deduplicate(kpts_list, boxes_list, conf_list, box_confs)
         if len(kpts_list) != 2:
-            self._no_signal = True
             return None
 
         people = []
@@ -310,24 +274,13 @@ class FacingClassifier:
         if lx == 0.0 and rx == 0.0:
             if left_p["has_data"] and right_p["has_data"]:
                 return "side_by_side"
-            self._no_signal = True
             return None
         if lx < -0.5 and rx > 0.5:
             return "diverging"
         return "side_by_side"
 
     def classify(self, crop_bgr, debug_log=None):
-        gaze_result = self.classify_gaze_dyad(crop_bgr, debug_log=debug_log)
-        if gaze_result is not None:
-            return gaze_result
-        if self._no_signal:
-            return None  # VLM would guess on the same missing info - skip
-        vlm_result = self.classify_vlm(crop_bgr)
-        if vlm_result is True:
-            return "facing"
-        if vlm_result is False:
-            return "side_by_side"
-        return None
+        return self.classify_gaze_dyad(crop_bgr, debug_log=debug_log)
 
     @staticmethod
     def is_group(label):
@@ -370,7 +323,7 @@ class SocialGroupDetector(Node):
 
         self.get_logger().info("Loading YOLOv8-pose...")
         self.classifier = FacingClassifier("yolov8n-pose.pt")
-        self.get_logger().info("Ready (MobileCLIP lazy-loads on first fallback use).")
+        self.get_logger().info("Ready.")
 
         self.create_subscription(String, self.input_topic, self.position_callback, 10)
         self.create_subscription(String, self.bbox_topic, self.bbox_callback, 10)

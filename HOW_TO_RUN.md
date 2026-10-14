@@ -197,6 +197,9 @@ The script of the pair controls (`run_conv_F_trial_control.sh`) is not on this l
 |---|---|
 | `... not active after 120 s` | a start-up failure; run the trial again with `_a2` |
 | no Gazebo, RViz or YOLO window | run `xhost +local:root` on the host |
+| "Perception ready" but no YOLO window | the YOLO node crashed; read `logs/<bag>/perception.log` (the readiness check only looks for publishers) |
+| `ValueError: bad marshal data` in `perception.log` | a corrupt Python bytecode cache; in the container run `find /root/venv -name __pycache__ -type d -prune -exec rm -rf {} +` and `export PYTHONDONTWRITEBYTECODE=1` (images built from the current Dockerfile do this already). If it keeps coming back, test the machine's RAM/CPU stability |
+| `ModuleNotFoundError: No module named 'open_clip'` | an older checkout; MobileCLIP is no longer used, pull the current code |
 | `bag already exists` | choose a new name; old bags are never overwritten |
 | RViz crashes at start with CycloneDDS | the scripts use the default FastDDS on purpose; do not set `RMW_IMPLEMENTATION` |
 | custom world or model not found | see "Custom Gazebo worlds/models" in `README.md`; the scripts sync them before launch |

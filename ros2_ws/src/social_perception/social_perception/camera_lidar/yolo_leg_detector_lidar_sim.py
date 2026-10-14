@@ -47,10 +47,15 @@ class YoloByteTrackPositionNode(Node):
 
         self.rgb_topic = "/oakd/rgb/preview/image_raw"  # SIM: raw Image, no namespace
 
-        export_path = "/root/thesis_social_navigation_ws/src/social_perception/social_perception/camera_lidar/yolov8n-pose_openvino_model/"
+        # Weights and export next to this script, whatever the working
+        # directory: Ultralytics downloads a bare "yolov8n-pose.pt" into the
+        # cwd and exports beside it, so the export never landed here.
+        here = os.path.dirname(os.path.abspath(__file__))
+        weights_path = os.path.join(here, "yolov8n-pose.pt")
+        export_path = os.path.join(here, "yolov8n-pose_openvino_model/")
         if not os.path.isdir(export_path):
             self.get_logger().info("OpenVINO export not found, exporting once...")
-            YOLO("yolov8n-pose.pt").export(format="openvino", imgsz=320)
+            YOLO(weights_path).export(format="openvino", imgsz=320)
         # SIM (head-on avoidance): inference size and publish gate as
         # parameters. Defaults are the hardware values. At imgsz 320 a
         # walker is first published at ~7.5 m, which leaves the robot
@@ -63,7 +68,7 @@ class YoloByteTrackPositionNode(Node):
         if self.imgsz == 320:
             self.model = YOLO(export_path)
         else:
-            self.model = YOLO(os.path.join(os.path.dirname(os.path.abspath(__file__)), "yolov8n-pose.pt"))
+            self.model = YOLO(weights_path)
 
         # COCO keypoint indices: 13=L knee,14=R knee,15=L ankle,16=R ankle
         self.leg_kpt_idx = [13, 14, 15, 16]
