@@ -289,9 +289,15 @@ cp "/opt/ros/jazzy/share/turtlebot4_gz_bringup/worlds/$WORLD.sdf" "$PROV/world_u
 cp "$MAP" "$PROV/map_used.yaml"
 cp "$0" "$PROV/trial_script_used.sh"
 cp "$WS/headon_send_goal.py" "$PROV/send_goal_used.py"
+# In parallel: one at a time took ~12 s (each starts its own ros2 CLI).
+# Wait on these PIDs only; a bare `wait` would block on the stack too.
+DUMP_PIDS=""
 for n in /controller_server /planner_server /bt_navigator /local_costmap/local_costmap /global_costmap/global_costmap; do
-  timeout 20 ros2 param dump "$n" > "$PROV/params_live$(echo "$n" | tr '/' '_').yaml" || echo "WARN: param dump failed for $n" >&2
+  # timeout: a param dump was seen to hang indefinitely on /controller_server.
+  ( timeout 20 ros2 param dump "$n" > "$PROV/params_live$(echo "$n" | tr '/' '_').yaml" || echo "WARN: param dump failed for $n" >&2 ) &
+  DUMP_PIDS="$DUMP_PIDS $!"
 done
+wait $DUMP_PIDS
 find "$WS/install" -name "libsocial_critic.so" -exec md5sum {} + > "$PROV/critic_so_md5.txt" || true
 grep -h "SocialCritic" "$LOG_DIR/nav2.log" > "$PROV/socialcritic_line.txt" || true
 md5sum "$PROV"/*_used.* > "$PROV/provenance_md5.txt"

@@ -36,7 +36,7 @@ Rows marked *(local)* are on the author's laptop and the thesis data carrier onl
 
 ## 2. Set up once
 
-You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics. For other graphics, change the environment variables in `docker/docker-compose.yaml`.
+You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics. For an NVIDIA GPU, use `docker compose -f docker-compose.nvidia.yaml` in place of `docker compose` below (needs the NVIDIA Container Toolkit); for other graphics, change the environment variables in `docker/docker-compose.yaml`.
 
 ```bash
 cd ~/thesis_social_navigation/docker
@@ -74,6 +74,8 @@ cd /root/thesis_social_navigation_ws && source install/setup.bash
 ```
 
 Gazebo and RViz open by themselves, and the initial pose and goal are set by the script. Each run ends with a short summary. See `SCENARIOS.md` for what to look for.
+
+To run a scenario step by step (each node in its own terminal, for debugging), see [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md).
 
 To watch a single trial with RViz, add `SHOW_RVIZ=true HEADLESS=false` in front of any `run_headon_F_trial.sh` or `run_conv_F_trial.sh` command.
 

@@ -102,24 +102,34 @@ done
 # Result summary
 # ----------------------------------------------------------------
 source /opt/ros/jazzy/setup.bash
+# The full analysis output goes to logs/<bag>/analysis.txt; only the key lines
+# are shown. If none of them is there (the analysis failed), show its last
+# lines instead of an empty summary.
+summary() {   # summary <grep -E args...> -- <analysis command...>
+  local filter=()
+  while [ "$1" != "--" ]; do filter+=("$1"); shift; done; shift
+  "$@" > "logs/$NAME/analysis.txt" 2>&1
+  grep -E "${filter[@]}" "logs/$NAME/analysis.txt" \
+    || { echo "  (no summary: the analysis printed this, full output in logs/$NAME/analysis.txt)"; tail -n 8 "logs/$NAME/analysis.txt"; }
+}
 echo
 echo "================ $SCEN : $NAME ================"
 case "$SCEN" in
   headon*)
-    python3 analysis/analyse_headon_F.py "bags/$NAME" 2>&1 \
-      | grep -E "goal reached|time to goal|min centre|person 2 min|stopped / spin" || true
+    summary "goal reached|time to goal|min centre|person 2 min|stopped / spin" -- \
+      python3 analysis/analyse_headon_F.py "bags/$NAME"
     if [ "$SCEN" = headon_blocked ]; then
       echo "Beeps and block events (sim seconds after the robot started):"
       python3 analysis/blocked_beep_timeline.py "bags/$NAME/data" | grep -F "**" || echo "  none"
     fi
     ;;
   queue)
-    python3 analysis/queue_run_summary.py "bags/$NAME" "${GOAL_X:-6.0}" "$GOAL_Y" 2>&1 \
-      | grep -vE "^bag:|zone mask|^    [+-]" || true
+    summary -v "^bag:|zone mask|^    [+-]" -- \
+      python3 analysis/queue_run_summary.py "bags/$NAME" "${GOAL_X:-6.0}" "$GOAL_Y"
     ;;
   conversation*)
-    python3 analysis/analyse_F_narrow.py "bags/$NAME" 2>&1 \
-      | grep -E "goal reached|time start|stopped time|spin-in-place|min centre|msgs .* narrow|through the gap" || true
+    summary "goal reached|time start|stopped time|spin-in-place|min centre|msgs .* narrow|through the gap" -- \
+      python3 analysis/analyse_F_narrow.py "bags/$NAME"
     ;;
 esac
 echo "Bag and provenance: $WS/bags/$NAME    Logs: $WS/logs/$NAME"

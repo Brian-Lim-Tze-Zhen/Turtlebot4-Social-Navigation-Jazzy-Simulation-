@@ -558,7 +558,9 @@ class SocialZoneCostmapNode(Node):
         self.pub.publish(msg)
 
     def destroy_node(self):
-        if self.map_info is not None:
+        # Skipped once the signal handler has shut the context down (as on
+        # every trial teardown): publish() then raises "context is invalid".
+        if self.map_info is not None and rclpy.ok():
             self._publish(np.zeros(
                 (self.map_info.height, self.map_info.width), dtype=np.int8))
             self.get_logger().info("Published empty grid to clear costmap")

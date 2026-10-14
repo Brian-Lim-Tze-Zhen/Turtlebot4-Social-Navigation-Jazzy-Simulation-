@@ -43,7 +43,7 @@ The final configuration was also run on the physical TurtleBot 4, ten runs per c
 
 ## Quick start
 
-You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics (for other graphics, change the variables in `docker/docker-compose.yaml`).
+You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics. For an NVIDIA GPU, use `docker compose -f docker-compose.nvidia.yaml` in place of `docker compose` (needs the NVIDIA Container Toolkit).
 
 ```bash
 git clone https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Social-Navigation-Jazzy-Simulation-.git
@@ -57,6 +57,8 @@ source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install && source install/setup.bash
 ./run_scenario.sh headon        # or headon_blocked, conversation_wide, conversation_narrow, queue
 ```
+
+To run a scenario step by step instead of with one command, see [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md).
 
 To start the whole stack without a scenario, run `./run_sim.sh` and set the robot's pose with **2D Pose Estimate** in RViz before sending a goal.
 
