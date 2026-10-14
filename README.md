@@ -1,5 +1,7 @@
 # Thesis: Social Navigation for TurtleBot4 (ROS2 Jazzy)
 
+> **Start with [HOW_TO_RUN.md](HOW_TO_RUN.md)**: folder map, set-up, demos, and the command, bags and report of every simulation experiment in the thesis. This README keeps the development notes up to 4 October 2026.
+
 Predictive, social-aware human-obstacle representation for Nav2, using
 YOLO + ByteTrack detection, a Kalman-filter motion predictor, and a
 direction-oriented elliptical risk zone published into the local costmap.
