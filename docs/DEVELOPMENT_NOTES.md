@@ -2,7 +2,7 @@
 
 These notes were the README during development. They record how each scenario was built and tuned, with the runs and results of that time. They are kept for the history of the work; the results of the thesis are in [the README](../README.md) and the commands to repeat them in [HOW_TO_RUN.md](../HOW_TO_RUN.md). Later work (5 to 13 October 2026: the robot's settings in simulation, the final configuration, the ablation re-run) is described in HOW_TO_RUN.md, section 4, and in the headers of the scripts.
 
-Since 14 October 2026 the batch scripts named here are in `ros2_ws/scripts/experiments/` and the older tools (`run_sim_bringup.sh`, `run_sim_perception.sh`, `run_sim_lidar_occupancy.sh`, `record_trial.sh`, `replay_AB/` and others) in `ros2_ws/scripts/legacy/`; the trial scripts, `run_scenario.sh` and `run_sim.sh` are still in the top level of `ros2_ws`.
+Several scripts and configurations named here were removed from the repository on 14 October 2026 (only the final configuration and the sets compared in the thesis were kept); they remain in the git history, commit `7998947` and earlier.
 
 Contents:
 

@@ -23,7 +23,7 @@ Rows marked *(local)* are on the author's laptop and the thesis data carrier onl
 | `ros2_ws/config/` | Nav2 parameter files, one per configuration tested | code |
 | `ros2_ws/launch/`, `maps/`, `behavior_trees/`, `simulation_models/` | launch files, maps, behaviour trees, Gazebo worlds and the person model | code |
 | `ros2_ws/run_*.sh`, `headon_send_goal.py` | entry points: one trial, one demo, the whole stack (section 4) | code |
-| `ros2_ws/scripts/` | `experiments/`: the batch scripts that recorded the thesis sets; `legacy/`: older tools not used for the results. Index: [ros2_ws/scripts/README.md](ros2_ws/scripts/README.md) | code |
+| `ros2_ws/scripts/experiments/` | batch scripts of the final configuration. Index: [ros2_ws/scripts/README.md](ros2_ws/scripts/README.md) | code |
 | `ros2_ws/analysis/` | analysis scripts and their saved reports (`*_report.txt`) | thesis evidence |
 | `ros2_ws/bags/` *(local)* | every recorded trial (about 15 GB). Each bag folder also holds `run_notes.txt` (all settings), `config_used.yaml`, `trial_script_used.sh` and copies of the nodes that ran | thesis evidence |
 | `ros2_ws/logs/` *(local)* | Nav2 logs and console output per trial; batch summaries | thesis evidence |
@@ -179,17 +179,9 @@ python3 analysis/unmapped_clearance.py bags/headon_rec20gs_trial*   # clearance 
 
 `scripts/experiments/run_rec20noghost_test.sh` runs the same configuration without group skip (bags `*_rec20ng_*`, report `unmapped_clearance_rec20ng_report.txt`).
 
-### 4.5 Batch scripts of the tuning steps (8 and 9 October 2026)
+### 4.5 Tuning steps (8 and 9 October 2026)
 
-The scripts are in `ros2_ws/scripts/experiments/` (index in [ros2_ws/scripts/README.md](ros2_ws/scripts/README.md)); each one lists its bags and baseline in its header and changes into the workspace itself.
-
-| Script | What it tested |
-|---|---|
-| `run_v4_followup.sh`, `run_v4_nowatch.sh` | sustained-approach critic (version 4) and its two rules separated |
-| `run_hwsync_headon.sh`, `run_hwsync_split.sh`, `run_pathside30.sh` (*host*); they use `run_hwsync_pathside_batch.sh` in the top level | the robot's changes ported to the simulation |
-| `run_sd03_test.sh`, `run_rec_test.sh`, `run_rec15_test.sh`, `run_rec20_test.sh`, `run_rec20_y04_test.sh`, `run_rec35_test.sh` | side-decision time and side-switch offset |
-| `run_conv_F_gskip_batch.sh` | group skip on the pair |
-| `run_headon_F_batch.sh` | head-on avoidance attempts (early October) |
+The tuning between the simulation version and the final configuration (side-switch offset 0.15 to 0.35 m, side-decision time, the robot's settings ported one by one) is not part of the thesis tables. Its batch scripts and configurations were removed from the repository on 14 October 2026 and remain in the git history (commit `7998947` and earlier); their recordings and reports are on the data carrier.
 
 ### 4.6 Older critic versions (`reproduction/repro_ws`)
 
