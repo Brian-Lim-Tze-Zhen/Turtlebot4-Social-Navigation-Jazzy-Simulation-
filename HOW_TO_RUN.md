@@ -18,18 +18,18 @@ Rows marked *(local)* are on the author's laptop and the thesis data carrier onl
 | Folder or file | What it is | Rule |
 |---|---|---|
 | `docker/` | Dockerfile and `docker-compose.yaml` of the simulation image (ROS 2 Jazzy, Nav2, Gazebo Harmonic, TurtleBot 4) | needed to run anything |
-| `ros2_ws/` | the workspace; mounted in the container as `/root/thesis_social_navigation_ws` | **do not move or rename anything inside** (scripts and the thesis use these paths) |
+| `ros2_ws/` | the workspace; mounted in the container as `/root/thesis_social_navigation_ws` | **do not rename** `src/`, `config/`, `launch/`, `maps/`, `analysis/`, `bags/`, `logs/` (scripts, recordings and the thesis use these paths) |
 | `ros2_ws/src/` | ROS 2 packages: `social_perception` (detector, tracker, predictor, person cloud, group detector) and `social_critic` (MPPI SocialCritic) | code |
 | `ros2_ws/config/` | Nav2 parameter files, one per configuration tested | code |
 | `ros2_ws/launch/`, `maps/`, `behavior_trees/`, `simulation_models/` | launch files, maps, behaviour trees, Gazebo worlds and the person model | code |
-| `ros2_ws/run_*.sh` | trial and batch scripts (section 4) | code |
+| `ros2_ws/run_*.sh`, `headon_send_goal.py` | entry points: one trial, one demo, the whole stack (section 4) | code |
+| `ros2_ws/scripts/` | `experiments/`: the batch scripts that recorded the thesis sets; `legacy/`: older tools not used for the results. Index: [ros2_ws/scripts/README.md](ros2_ws/scripts/README.md) | code |
 | `ros2_ws/analysis/` | analysis scripts and their saved reports (`*_report.txt`) | thesis evidence |
 | `ros2_ws/bags/` *(local)* | every recorded trial (about 15 GB). Each bag folder also holds `run_notes.txt` (all settings), `config_used.yaml`, `trial_script_used.sh` and copies of the nodes that ran | thesis evidence |
 | `ros2_ws/logs/` *(local)* | Nav2 logs and console output per trial; batch summaries | thesis evidence |
 | `ablation_ws/` | separate workspace in the state of August 2026 for the ablation A to E, with its host runner `run_ablation_AE.sh` (its bags and logs *(local)*) | thesis evidence |
-| `repro_ws/`, `repro_results/` *(local)* | reproduction workspace and results of 10 to 11 October 2026 (older critic versions rebuilt from git); the pair controls were run here | thesis evidence |
-| `repro_log_20261010.txt` *(local)* | log of the reproduction of 10 and 11 October 2026 (every repeated or discarded attempt with its reason); the log of the ablation re-run is `ros2_ws/analysis/headon_ablation_rerun_log.txt` | thesis evidence |
-| `HANDOFF.md`, `HANDOFF_next_chat.md`, `notes/` *(local)* | development notes (`HANDOFF_next_chat.md` is cited in Appendix E of the thesis) | data carrier |
+| `reproduction/` *(local)* | `repro_ws/` and `repro_results/`: reproduction workspace and results of 10 to 11 October 2026 (older critic versions rebuilt from git; the pair controls were run here); `repro_log_20261010.txt`, the log of every repeated or discarded attempt; `record_problem1_stage4.sh` (video). The log of the ablation re-run is `ros2_ws/analysis/headon_ablation_rerun_log.txt` | thesis evidence |
+| `notes/` *(local)* | development notes, including `HANDOFF.md` and `HANDOFF_next_chat.md` (the latter is cited in Appendix E of the thesis) | data carrier |
 | `archive/` *(local)* | unused leftovers moved here on 14 October 2026 (August backups, `.bak` copies of scripts); not used by anything | can be deleted |
 
 ---
@@ -157,8 +157,8 @@ python3 analysis/analyse_headon_F.py bags/headon_test_trial*
 | Simulation version | `…_blockedhold_approach_sim.yaml` | `conv_F_v4_{wide,narrow}_trial1-10` | `conv_F_v4_n10_report.txt` |
 | Before the fix / group skip | `…_blockedhold_sim.yaml` / `…_blockedhold_groupskip_sim.yaml` | `conv_F_final_*`, `conv_F_gs3_*` | `conv_F_final_wide_narrow_report.txt`, `conv_F_gs3_report.txt` |
 | Final configuration | `…_rec20_noghost_groupskip_sim.yaml` | `conv_F_rec20gs_{wide,narrow}_trial01-10` | `conv_F_rec20gs_n10_report.txt`, `member_lanes_rec20_report.txt` |
-| Stage 4 on the pair | rebuilt in `repro_ws` | `conv_F_stage4_narrow_trial1-6` | `conv_F_stage4_narrow_report.txt` |
-| Controls (no groups, lethal zone) | run in `repro_ws` | `ctrl_*_trial1-6` | `conv_F_controls_report.txt` |
+| Stage 4 on the pair | rebuilt in `reproduction/repro_ws` | `conv_F_stage4_narrow_trial1-6` | `conv_F_stage4_narrow_report.txt` |
+| Controls (no groups, lethal zone) | run in `reproduction/repro_ws` | `ctrl_*_trial1-6` | `conv_F_controls_report.txt` |
 
 One trial and its analysis:
 
@@ -172,30 +172,30 @@ python3 analysis/aggregate_F_trials.py "conv_F_test_narrow_trial*"
 ### 4.4 The final configuration in one command (simulation side of Section 7.6)
 
 ```bash
-./run_rec20ng_groupskip_test.sh              # headon, headon_y04, wide, narrow (10 trials each)
-./run_rec20ng_groupskip_test.sh headon wide  # only some parts
+./scripts/experiments/run_rec20ng_groupskip_test.sh              # headon, headon_y04, wide, narrow (10 trials each)
+./scripts/experiments/run_rec20ng_groupskip_test.sh headon wide  # only some parts
 python3 analysis/unmapped_clearance.py bags/headon_rec20gs_trial*   # clearance as compared with the robot
 ```
 
-`run_rec20noghost_test.sh` runs the same configuration without group skip (bags `*_rec20ng_*`, report `unmapped_clearance_rec20ng_report.txt`).
+`scripts/experiments/run_rec20noghost_test.sh` runs the same configuration without group skip (bags `*_rec20ng_*`, report `unmapped_clearance_rec20ng_report.txt`).
 
 ### 4.5 Batch scripts of the tuning steps (8 and 9 October 2026)
 
-Each script lists its bags and baseline in its header.
+The scripts are in `ros2_ws/scripts/experiments/` (index in [ros2_ws/scripts/README.md](ros2_ws/scripts/README.md)); each one lists its bags and baseline in its header and changes into the workspace itself.
 
 | Script | What it tested |
 |---|---|
 | `run_v4_followup.sh`, `run_v4_nowatch.sh` | sustained-approach critic (version 4) and its two rules separated |
-| `run_hwsync_headon.sh`, `run_hwsync_split.sh`, `run_hwsync_pathside_batch.sh`, `run_pathside30.sh` (*host*) | the robot's changes ported to the simulation |
+| `run_hwsync_headon.sh`, `run_hwsync_split.sh`, `run_pathside30.sh` (*host*); they use `run_hwsync_pathside_batch.sh` in the top level | the robot's changes ported to the simulation |
 | `run_sd03_test.sh`, `run_rec_test.sh`, `run_rec15_test.sh`, `run_rec20_test.sh`, `run_rec20_y04_test.sh`, `run_rec35_test.sh` | side-decision time and side-switch offset |
 | `run_conv_F_gskip_batch.sh` | group skip on the pair |
 | `run_headon_F_batch.sh` | head-on avoidance attempts (early October) |
 
-### 4.6 Older critic versions (`repro_ws`)
+### 4.6 Older critic versions (`reproduction/repro_ws`)
 
-`repro_ws` holds the critic packages of commits `9d7b406` (baseline) and `b06d253` (stage 4), which were rebuilt on 10 October 2026. `record_problem1_stage4.sh` *(local)* replays the stage-4 narrow pair with Gazebo and RViz open, for a video. `repro_log_20261010.txt` *(local)* lists every reproduced trial.
+`reproduction/repro_ws` *(local)* holds the critic packages of commits `9d7b406` (baseline) and `b06d253` (stage 4), which were rebuilt on 10 October 2026. `reproduction/record_problem1_stage4.sh` replays the stage-4 narrow pair with Gazebo and RViz open, for a video. `reproduction/repro_log_20261010.txt` lists every reproduced trial.
 
-The script of the pair controls (`run_conv_F_trial_control.sh`) is not on this laptop any more. The settings of those runs are in `repro_ws/bags/ctrl_*/run_notes.txt`.
+The script of the pair controls (`run_conv_F_trial_control.sh`) is not on this laptop any more. The settings of those runs are in `reproduction/repro_ws/bags/ctrl_*/run_notes.txt`.
 
 ---
 

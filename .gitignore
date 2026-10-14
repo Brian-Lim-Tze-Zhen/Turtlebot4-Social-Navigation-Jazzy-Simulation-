@@ -77,8 +77,7 @@ ros2_ws/debug_crops/
 *.orig
 
 # Reproduction of 10 Oct 2026 (2.0 GB workspace, 1.5 GB results; results already copied into ros2_ws/analysis)
-repro_ws/
-repro_results/
+reproduction/
 
 # A-E re-run workspace (13 Oct 2026): recordings, logs and model copies; the bags are also in ros2_ws/bags
 ablation_ws/bags/
@@ -91,7 +90,4 @@ archive/
 notes/
 # author-only files (kept locally and on the data carrier)
 CLAUDE.md
-HANDOFF_next_chat.md
 ablation_ws/ablation_log_20261013.txt
-record_problem1_stage4.sh
-repro_log_20261010.txt
