@@ -29,7 +29,7 @@ Rows marked *(local)* are on the author's laptop and the thesis data carrier onl
 | `ablation_ws/` | separate workspace in the state of August 2026 for the ablation A to E (its bags and logs *(local)*) | thesis evidence |
 | `repro_ws/`, `repro_results/` *(local)* | reproduction workspace and results of 10 to 11 October 2026 (older critic versions rebuilt from git); the pair controls were run here | thesis evidence |
 | `run_ablation_AE.sh` | host script that runs the ablation in `ablation_ws` | code |
-| `repro_log_20261010.txt` | log of the reproduction of 10 and 11 October 2026 (every repeated or discarded attempt with its reason); the log of the ablation re-run is `ros2_ws/analysis/headon_ablation_rerun_log.txt` | thesis evidence |
+| `repro_log_20261010.txt` *(local)* | log of the reproduction of 10 and 11 October 2026 (every repeated or discarded attempt with its reason); the log of the ablation re-run is `ros2_ws/analysis/headon_ablation_rerun_log.txt` | thesis evidence |
 | `HANDOFF.md`, `HANDOFF_next_chat.md`, `notes/` *(local)* | development notes (`HANDOFF_next_chat.md` is cited in Appendix E of the thesis) | data carrier |
 | `archive/` *(local)* | unused leftovers moved here on 14 October 2026 (August backups, `.bak` copies of scripts); not used by anything | can be deleted |
 
@@ -194,7 +194,7 @@ Each script lists its bags and baseline in its header.
 
 ### 4.6 Older critic versions (`repro_ws`)
 
-`repro_ws` holds the critic packages of commits `9d7b406` (baseline) and `b06d253` (stage 4), which were rebuilt on 10 October 2026. `record_problem1_stage4.sh` *(local)* replays the stage-4 narrow pair with Gazebo and RViz open, for a video. `repro_log_20261010.txt` lists every reproduced trial.
+`repro_ws` holds the critic packages of commits `9d7b406` (baseline) and `b06d253` (stage 4), which were rebuilt on 10 October 2026. `record_problem1_stage4.sh` *(local)* replays the stage-4 narrow pair with Gazebo and RViz open, for a video. `repro_log_20261010.txt` *(local)* lists every reproduced trial.
 
 The script of the pair controls (`run_conv_F_trial_control.sh`) is not on this laptop any more. The settings of those runs are in `repro_ws/bags/ctrl_*/run_notes.txt`.
 
