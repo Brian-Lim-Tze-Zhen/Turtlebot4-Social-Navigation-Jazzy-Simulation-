@@ -109,6 +109,7 @@ xhost +local:root
 ./run_ablation_AE.sh build          # build the August critic once (about 2 min)
 ./run_ablation_AE.sh batch 6        # 6 trials x conditions A-E, order A1 B1 C1 D1 E1 A2 ...
 ./run_ablation_AE.sh one C c_test   # a single pilot trial
+cp -r ablation_ws/bags/[a-e]_*_rr_t* ros2_ws/bags/     # the analyses read the bags from ros2_ws/bags
 ros2_ws/analysis/run_ablation_rerun_analyses.sh   # all Chapter 4 / Section 7.2 analyses
 ```
 

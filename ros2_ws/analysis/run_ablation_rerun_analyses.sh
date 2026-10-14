@@ -2,7 +2,7 @@
 # Runs the Chapter 4 / Section 7.2 analyses of the A-E ablation on the re-run bags (*_rr_t*), in the jazzy image.
 # Writes <script>_rerun.txt next to each earlier output; the outputs of the first run are not touched.
 # Usage (host): analysis/run_ablation_rerun_analyses.sh
-WS=$HOME/thesis_social_navigation/ros2_ws
+WS=$(cd "$(dirname "$0")/.." && pwd)   # ros2_ws, the folder above this script
 docker run --rm -v "$WS:/ws" thesis-social-nav-jazzy:latest bash -c '
 source /opt/ros/jazzy/setup.bash; cd /ws/analysis
 RR=$(ls -d /ws/bags/[a-e]_*_rr_t0* | sort)
