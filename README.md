@@ -4,6 +4,8 @@ Simulation code of the master's thesis *Lightweight Socially-Aware Navigation vi
 
 A TurtleBot 4 detects people with its camera and LiDAR (YOLO and ByteTrack), predicts their motion with a Kalman filter, and passes them at a social distance. Nav2's MPPI controller uses a custom critic (SocialCritic) with lane rules for a person walking towards the robot, and a group detector that tells the robot whether to go around a standing pair or pass between its members.
 
+The same system on the physical TurtleBot 4 (ROS 2 Humble) is in the companion repository [Turtlebot4-Hardware-Humble](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble).
+
 ## Results
 
 ### Head-on walker: the robot moves aside early
@@ -35,6 +37,10 @@ Final configuration in simulation, ten trials each (`ros2_ws/analysis/conv_F_rec
 
 How to repeat these runs: [HOW_TO_RUN.md](HOW_TO_RUN.md), section 4.
 
+### On the real robot
+
+The final configuration was also run on the physical TurtleBot 4, ten runs per case (thesis Section 7.6.2): the robot passed the head-on walker on the right in all ten runs, went around the pair in the wide hallway and between the members in the narrow section in all ten, without stopping for the pair. Distances, run commands and run records are in the [hardware repository](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble).
+
 ## Quick start
 
 You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics (for other graphics, change the variables in `docker/docker-compose.yaml`).
@@ -63,6 +69,7 @@ The image installs ROS 2 Jazzy, Nav2, Gazebo Harmonic and the TurtleBot 4 packag
 | [HOW_TO_RUN.md](HOW_TO_RUN.md) | folder map, set-up, and the command, recordings and report of every simulation experiment of the thesis |
 | [SCENARIOS.md](SCENARIOS.md) | the five demo scenarios and what to look for |
 | [docs/DEVELOPMENT_NOTES.md](docs/DEVELOPMENT_NOTES.md) | how the scenarios were built and tuned, with the runs of 24 September to 4 October 2026 |
+| [Turtlebot4-Hardware-Humble](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble) | the robot side: final robot configuration, launch and run scripts, results on the robot |
 | [docker/notes/](docker/notes/) | fixes for problems of the container (TF QoS, YOLO threads, world sync, package pins) |
 
 ## Custom Gazebo worlds/models - known issue and workaround
