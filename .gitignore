@@ -84,3 +84,8 @@ repro_results/
 ablation_ws/bags/
 ablation_ws/logs/
 ablation_ws/simulation_models/
+
+# local archive of unused leftovers (not part of the thesis code)
+archive/
+# personal development notes (kept locally, not published)
+notes/
