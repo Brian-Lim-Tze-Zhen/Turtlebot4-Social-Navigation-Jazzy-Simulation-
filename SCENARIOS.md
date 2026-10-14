@@ -27,8 +27,8 @@ and prints a short result. A run takes 2 to 4 minutes.
 
 Build and start the container:
 
-    git clone git@github.com:Brian-Lim-Tze-Zhen/Turtlebot4-Social-Navigation.git
-    cd Turtlebot4-Social-Navigation/docker
+    git clone https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Social-Navigation-Jazzy-Simulation-.git
+    cd Turtlebot4-Social-Navigation-Jazzy-Simulation-/docker
     docker compose build
     docker compose up -d
 

@@ -7,7 +7,7 @@ Start here. This guide covers four things:
 3. how to run a demo;
 4. how to repeat every simulation experiment of the thesis, and where its result is written.
 
-`README.md` keeps the detailed development notes up to 4 October 2026, and `SCENARIOS.md` describes the five demos for a visitor.
+[docs/DEVELOPMENT_NOTES.md](docs/DEVELOPMENT_NOTES.md) keeps the detailed development notes up to 4 October 2026, and `SCENARIOS.md` describes the five demos for a visitor.
 
 ---
 
