@@ -12,14 +12,13 @@
 #   Without the author's snapshot image: IMAGE=thesis-social-nav-jazzy ./run_ablation_AE.sh ...
 #   Before the first run: xhost +local:root   (the August YOLO node opens a small window)
 #   Reads:  ablation_ws/
-#   Writes: ablation_ws/bags/<condition>_rr_tNN/, ablation_ws/logs/, ablation_log_20261013.txt
+#   Writes: ablation_ws/bags/<condition>_rr_tNN/, ablation_ws/logs/, ablation_ws/ablation_log_20261013.txt
 #   A trial that fails at start-up (no bag or no goal result) is logged and repeated as _a2, _a3.
 # --------------------------------------------------------------------------------------------------
 set -e
-ROOT=$(cd "$(dirname "$0")" && pwd)   # the folder of this script
-WS=$ROOT/ablation_ws
+WS=$(cd "$(dirname "$0")" && pwd)   # ablation_ws, the folder of this script
 IMAGE=${IMAGE:-thesis-social-nav-snap:20261010}   # author's snapshot; others: IMAGE=thesis-social-nav-jazzy (built from docker/)
-LOG=$ROOT/ablation_log_20261013.txt
+LOG=$WS/ablation_log_20261013.txt
 MODE=${1:-}
 
 in_container() {   # in_container <command string>

@@ -92,6 +92,6 @@ notes/
 # author-only files (kept locally and on the data carrier)
 CLAUDE.md
 HANDOFF_next_chat.md
-ablation_log_20261013.txt
+ablation_ws/ablation_log_20261013.txt
 record_problem1_stage4.sh
 repro_log_20261010.txt

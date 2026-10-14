@@ -26,9 +26,8 @@ Rows marked *(local)* are on the author's laptop and the thesis data carrier onl
 | `ros2_ws/analysis/` | analysis scripts and their saved reports (`*_report.txt`) | thesis evidence |
 | `ros2_ws/bags/` *(local)* | every recorded trial (about 15 GB). Each bag folder also holds `run_notes.txt` (all settings), `config_used.yaml`, `trial_script_used.sh` and copies of the nodes that ran | thesis evidence |
 | `ros2_ws/logs/` *(local)* | Nav2 logs and console output per trial; batch summaries | thesis evidence |
-| `ablation_ws/` | separate workspace in the state of August 2026 for the ablation A to E (its bags and logs *(local)*) | thesis evidence |
+| `ablation_ws/` | separate workspace in the state of August 2026 for the ablation A to E, with its host runner `run_ablation_AE.sh` (its bags and logs *(local)*) | thesis evidence |
 | `repro_ws/`, `repro_results/` *(local)* | reproduction workspace and results of 10 to 11 October 2026 (older critic versions rebuilt from git); the pair controls were run here | thesis evidence |
-| `run_ablation_AE.sh` | host script that runs the ablation in `ablation_ws` | code |
 | `repro_log_20261010.txt` *(local)* | log of the reproduction of 10 and 11 October 2026 (every repeated or discarded attempt with its reason); the log of the ablation re-run is `ros2_ws/analysis/headon_ablation_rerun_log.txt` | thesis evidence |
 | `HANDOFF.md`, `HANDOFF_next_chat.md`, `notes/` *(local)* | development notes (`HANDOFF_next_chat.md` is cited in Appendix E of the thesis) | data carrier |
 | `archive/` *(local)* | unused leftovers moved here on 14 October 2026 (August backups, `.bak` copies of scripts); not used by anything | can be deleted |
@@ -97,8 +96,8 @@ All configuration names below are in `config/` and start with `social_nav2_`. Th
 This experiment runs in its own workspace `ablation_ws`. The ablation compares five conditions A to E of the August 2026 system, so it must run the August code, not the final one in `ros2_ws`: the Nav2 parameter files, SocialCritic package, world, map, behaviour tree, YOLO detector and LiDAR fusion of commit `eb3f9ac` (15 August 2026), plus the person cloud node, predictor and walker script as saved in the August bags (including a cloud ellipse width that was never committed). Building that old critic in `ros2_ws` would overwrite the final one, hence the separate workspace. Compared with August, each trial now also saves the launched parameter file, the live controller parameters, the Nav2 log and the process list. The author ran it with `thesis-social-nav-snap:20261010`, a `docker commit` of the container of 10 October 2026. That image differs from the one built from `docker/` only in caches and in the worlds and launch files, which the trial script copies in itself, so without it use the public image:
 
 ```bash
-IMAGE=thesis-social-nav-jazzy ./run_ablation_AE.sh build
-IMAGE=thesis-social-nav-jazzy ./run_ablation_AE.sh batch 6
+IMAGE=thesis-social-nav-jazzy ablation_ws/run_ablation_AE.sh build
+IMAGE=thesis-social-nav-jazzy ablation_ws/run_ablation_AE.sh batch 6
 ```
 
 The author's own commands were:
@@ -106,9 +105,9 @@ The author's own commands were:
 ```bash
 # host, in ~/thesis_social_navigation
 xhost +local:root
-./run_ablation_AE.sh build          # build the August critic once (about 2 min)
-./run_ablation_AE.sh batch 6        # 6 trials x conditions A-E, order A1 B1 C1 D1 E1 A2 ...
-./run_ablation_AE.sh one C c_test   # a single pilot trial
+ablation_ws/run_ablation_AE.sh build          # build the August critic once (about 2 min)
+ablation_ws/run_ablation_AE.sh batch 6        # 6 trials x conditions A-E, order A1 B1 C1 D1 E1 A2 ...
+ablation_ws/run_ablation_AE.sh one C c_test   # a single pilot trial
 cp -r ablation_ws/bags/[a-e]_*_rr_t* ros2_ws/bags/     # the analyses read the bags from ros2_ws/bags
 ros2_ws/analysis/run_ablation_rerun_analyses.sh   # all Chapter 4 / Section 7.2 analyses
 ```
@@ -116,7 +115,7 @@ ros2_ws/analysis/run_ablation_rerun_analyses.sh   # all Chapter 4 / Section 7.2 
 | Output | Location |
 |---|---|
 | bags | `ablation_ws/bags/<condition>_rr_tNN/` |
-| trial log | `ablation_log_20261013.txt` (the thesis copy is `ros2_ws/analysis/headon_ablation_rerun_log.txt`) |
+| trial log | `ablation_ws/ablation_log_20261013.txt` (the thesis copy is `ros2_ws/analysis/headon_ablation_rerun_log.txt`) |
 | report | `ros2_ws/analysis/headon_ablation_rerun_report.txt` and the other `*_rerun.txt` |
 
 ### 4.2 Head-on corridor (Chapter 5, Section 7.3)
