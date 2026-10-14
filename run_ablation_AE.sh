@@ -9,15 +9,16 @@
 #     ./run_ablation_AE.sh build              build the August critic once (about 2 minutes)
 #     ./run_ablation_AE.sh one  <A-E> <name>  one trial with the given bag name (pilot)
 #     ./run_ablation_AE.sh batch [n]          n trials per condition (default 6), order A1 B1 C1 D1 E1 A2 ...
+#   Without the author's snapshot image: IMAGE=thesis-social-nav-jazzy ./run_ablation_AE.sh ...
 #   Before the first run: xhost +local:root   (the August YOLO node opens a small window)
 #   Reads:  ablation_ws/
 #   Writes: ablation_ws/bags/<condition>_rr_tNN/, ablation_ws/logs/, ablation_log_20261013.txt
 #   A trial that fails at start-up (no bag or no goal result) is logged and repeated as _a2, _a3.
 # --------------------------------------------------------------------------------------------------
 set -e
-ROOT=/home/brian/thesis_social_navigation
+ROOT=$(cd "$(dirname "$0")" && pwd)   # the folder of this script
 WS=$ROOT/ablation_ws
-IMAGE=thesis-social-nav-snap:20261010
+IMAGE=${IMAGE:-thesis-social-nav-snap:20261010}   # author's snapshot; others: IMAGE=thesis-social-nav-jazzy (built from docker/)
 LOG=$ROOT/ablation_log_20261013.txt
 MODE=${1:-}
 
