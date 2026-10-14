@@ -18,18 +18,18 @@ Ten trials per configuration (`ros2_ws/analysis/*_n10_report.txt`). The target i
 | Lane rules | 0.84 ± 0.04 | 0.0 | 37.3 ± 0.4 | 10 / 10 |
 | Final configuration (as on the robot) | 0.76 ± 0.07 | 0.0 | 37.7 ± 0.4 | 10 / 10 |
 
-### Standing pair: around in a wide hallway, between in a narrow corridor
+### Standing pair: around in open space, between in a narrow corridor
 
-![Standing pair on the robot](docs/media/conversation_pair_robot.gif)
+![Standing pair in simulation](docs/media/conversation_pair_sim.gif)
 
-*Real TurtleBot 4, 9 October 2026, played at 1.5x speed; faces blurred. Left: in the wide hallway the robot goes around the pair. Right: in the narrow corridor there is no way around, so it passes between them without stopping.*
+*Simulation, played at 2x speed. Left: in open space the robot goes around the pair. Right: in a 2.0 m corridor there is no way around, so it passes between the two people without stopping. Demonstration runs of 4 October 2026 (`demo_conversation_wide_20261004_132727`, `demo_conversation_narrow_20261004_132106`), not trials of the tables.*
 
-The same configuration in simulation, ten trials each (`ros2_ws/analysis/conv_F_rec20gs_n10_report.txt`):
+Final configuration in simulation, ten trials each (`ros2_ws/analysis/conv_F_rec20gs_n10_report.txt`):
 
 | Case | Robot's path | Closest distance between centres (m) | Stopped (s) | Time to goal (s) | Goal reached |
 |---|---|---|---|---|---|
-| Wide | around the pair | 0.87 ± 0.03 | 0.0 | 24.6 ± 0.2 | 10 / 10 |
-| Narrow | between the members | 0.71 ± 0.02 | 0.0 | 21.4 ± 0.2 | 10 / 10 |
+| Wide (open space) | around the pair | 0.87 ± 0.03 | 0.0 | 24.6 ± 0.2 | 10 / 10 |
+| Narrow (2.0 m corridor) | between the members | 0.71 ± 0.02 | 0.0 | 21.4 ± 0.2 | 10 / 10 |
 
 How to repeat these runs: [HOW_TO_RUN.md](HOW_TO_RUN.md), section 4.
 
