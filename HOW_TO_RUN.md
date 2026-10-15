@@ -204,4 +204,4 @@ The script of the pair controls (`run_conv_F_trial_control.sh`) is not on this l
 | `ModuleNotFoundError: No module named 'open_clip'` | an older checkout; MobileCLIP is no longer used, pull the current code |
 | `bag already exists` | choose a new name; old bags are never overwritten |
 | RViz crashes at start with CycloneDDS | the scripts use the default FastDDS on purpose; do not set `RMW_IMPLEMENTATION` |
-| custom world or model not found | see "Custom Gazebo worlds/models" in `README.md`; the scripts sync them before launch |
+| custom world or model not found | the scripts copy them into the installed TurtleBot 4 package before launch; see the [world sync note](docker/notes/world-sync-script.md) |
