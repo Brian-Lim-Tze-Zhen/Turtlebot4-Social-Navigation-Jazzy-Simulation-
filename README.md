@@ -63,24 +63,42 @@ To repeat any of these runs, see [the experiments of the thesis](HOW_TO_RUN.md#4
 
 ## Quick start
 
-You need Linux with Docker and Docker Compose, an X11 display, and Intel/Mesa graphics. For an NVIDIA GPU, use `docker compose -f docker-compose.nvidia.yaml` in place of `docker compose` (needs the NVIDIA Container Toolkit).
+You need Linux with Docker and Docker Compose, and an X11 display. The default set-up is for Intel/Mesa graphics; for an NVIDIA GPU, see step 2.
+
+**1. Get the code.** This downloads the repository: the workspace with the nodes, configurations, worlds and maps (`ros2_ws`), and the Docker set-up (`docker`).
 
 ```bash
 git clone https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Social-Navigation-Jazzy-Simulation-.git
 cd Turtlebot4-Social-Navigation-Jazzy-Simulation-/docker
-docker compose build && docker compose up -d
-xhost +local:root
+```
 
+**2. Build and start the container.** The build installs ROS 2 Jazzy, Nav2, Gazebo Harmonic, the TurtleBot 4 packages and the Python environment for YOLO. It is needed once; later starts reuse the image. `up -d` starts the container `thesis_social_nav` in the background, with the workspace mounted from `ros2_ws`, so edits on the host are seen inside it at once. `xhost` lets Gazebo, RViz and the YOLO window open on your screen.
+
+```bash
+docker compose build
+docker compose up -d
+xhost +local:root
+```
+
+With an NVIDIA GPU (needs the NVIDIA Container Toolkit), use `docker compose -f docker-compose.nvidia.yaml build` and `docker compose -f docker-compose.nvidia.yaml up -d` instead. After a reboot, run `docker start thesis_social_nav` and `xhost +local:root` again.
+
+**3. Open a shell in the container and build the workspace.** `colcon build` compiles the SocialCritic plugin and installs the perception package; `--symlink-install` links the Python nodes and launch files, so editing them needs no rebuild. Sourcing `install/setup.bash` makes the built packages visible in this shell.
+
+```bash
 docker exec -it thesis_social_nav bash
 cd /root/thesis_social_navigation_ws
 source /opt/ros/jazzy/setup.bash
-colcon build --symlink-install && source install/setup.bash
+colcon build --symlink-install
+source install/setup.bash
+```
+
+**4. Run a scenario with one command.** Each run starts a fresh Gazebo, Nav2 and the perception pipeline, localises and undocks the robot, sends the goal (and starts the walkers), records a bag, shuts everything down and prints a short result. A run takes 2 to 4 minutes; the first one also downloads the YOLO weights.
+
+```bash
 ./run_scenario.sh headon        # or headon_blocked, conversation_wide, conversation_narrow, queue
 ```
 
-To start each part yourself, one node per terminal with the pose and goal set by hand in RViz, run the [scenarios step by step](docs/MANUAL_RUN.md). `./run_sim.sh` starts the [first pipeline](ros2_ws/src/social_perception/social_perception/README.md) of the project, not the one behind the results.
-
-The image installs ROS 2 Jazzy, Nav2, Gazebo Harmonic and the TurtleBot 4 packages; the YOLO weights are downloaded on first use.
+What each scenario shows and what to look for is in the [demo scenarios](SCENARIOS.md). To start each part yourself instead, one node per terminal with the pose and goal set by hand in RViz, run the [scenarios step by step](docs/MANUAL_RUN.md). (`./run_sim.sh` starts the [first pipeline](ros2_ws/src/social_perception/social_perception/README.md) of the project, not the one behind the results.)
 
 ## Documentation
 
