@@ -49,17 +49,21 @@ To repeat any of these runs, see [the experiments of the thesis](HOW_TO_RUN.md#4
 
 ## Analysis
 
+**What the lane rules change.** A person walks straight at the robot in a narrow corridor. Without the lane rules, the robot does not get out of the way in time, and they touch. With them, it moves to one side early and passes at about the target distance of 0.8 m.
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/media/results_dark.png">
-  <img alt="Left: closest distance between centres in ten head-on trials for the baseline, the lane rules and the final configuration. Right: nearest LiDAR return not on the map for the final configuration in simulation and on the robot, head-on walker, wide pair and narrow pair." src="docs/media/results_light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/headon_dark.png">
+  <img alt="Bar chart: closest distance between robot and walker in simulation, mean of 10 trials. No lane rules 0.08 m, the robot touches the walker; lane rules 0.84 m; final configuration 0.76 m." src="docs/media/headon_light.png">
 </picture>
 
-*Dots: single runs; bars: means. Left: closest distance between the centres of robot and person, from Gazebo's ground truth. Right: the measure that also works on the robot, which has no ground truth: the nearest LiDAR return that is not on the map. Data from the [simulation reports](ros2_ws/analysis/) and the robot runs of 12 October 2026; [chart script](docs/media/make_results_chart.py).*
+**Does the real robot behave like the simulation?** The robot has no exact positions of people, so here both are measured the same way: the distance from the LiDAR to the nearest person. For the standing pair, robot and simulation agree. The robot passed the walker wider, and its runs varied more (± 0.15 m on the robot, ± 0.07 m in simulation).
 
-- **Without lane rules the robot touches the walker.** The baseline's closest distance is 0.08 m between centres, far below contact at 0.44 m.
-- **The lane rules move it aside early.** They reach 0.84 m. The final configuration, with the settings brought back from the robot, keeps 0.76 m.
-- **The standing pair matches between simulation and robot.** Wide pair: 0.765 m in simulation, 0.766 m on the robot.
-- **The head-on walker varies more on the robot.** 0.67 ± 0.15 m on the robot, against 0.54 ± 0.07 m in simulation. Narrow pair: 0.56 m on the robot, 0.60 m in simulation.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/sim_vs_robot_dark.png">
+  <img alt="Dot chart: closest distance in the final configuration, simulation against robot, mean of 10 runs. Walker 0.54 m in simulation, 0.67 m on the robot; wide pair 0.76 m on both; narrow pair 0.60 m in simulation, 0.56 m on the robot." src="docs/media/sim_vs_robot_light.png">
+</picture>
+
+*Data: the [simulation reports](ros2_ws/analysis/) and the [robot runs of 12 October 2026](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble/blob/main/humble_client/Task/HARDWARE_DAY_20261012.md); [chart script](docs/media/make_results_chart.py).*
 
 ## Quick start
 
