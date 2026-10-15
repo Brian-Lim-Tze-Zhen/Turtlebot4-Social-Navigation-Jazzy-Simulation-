@@ -6,6 +6,19 @@ debugged on its own. The values are the ones the scripts use
 (`ros2_ws/run_headon_F_trial.sh` for the two head-on scenarios,
 `ros2_ws/run_conv_F_trial.sh` for the other three).
 
+The robot's starting pose and the goal can be set by hand in RViz
+(**2D Pose Estimate** and **Nav2 Goal**) or with a command; both are given.
+
+| Scenario | Starting pose (on the dock) | Goal |
+|---|---|---|
+| headon, headon_blocked | (-3.0, 0.0), facing -x | (8.0, 0.0), facing +x |
+| conversation_wide, conversation_narrow | (-1.0, 0.0), facing -x | (6.0, 0.0), facing +x |
+| queue | (-1.0, 0.0), facing -x | (6.0, -3.0), facing +x |
+
+The map frame is the Gazebo world frame, so these are also the positions in
+Gazebo. The robot starts on its dock facing away from the people (-x);
+undocking turns it round to face them (+x).
+
 Every step runs **inside the container**. Each numbered terminal is a new shell:
 
 ```bash
@@ -82,11 +95,16 @@ ros2 launch turtlebot4_gz_bringup turtlebot4_gz.launch.py \
   x:=$SX y:=0.0 yaw:=3.14159
 ```
 
-RViz (terminal 2, optional):
+RViz (terminal 2). It is needed for the hand-set pose and goal, and shows
+the map, the costmaps, the people and the planned path:
 
 ```bash
 rviz2 -d config/headon_view.rviz --ros-args -p use_sim_time:=true
 ```
+
+To read map coordinates in RViz, pick **Publish Point** in the toolbar and
+hover over the map: the status bar at the bottom shows the position under
+the cursor.
 
 ## 3. Localise and undock (terminal 3)
 
@@ -101,16 +119,31 @@ done
 sleep 5                                   # let AMCL's TF buffer catch up
 ```
 
-Set the initial pose (or use **2D Pose Estimate** in RViz). In the message,
-the covariance comes before the pose on purpose.
+Set the initial pose while the robot is still on its dock, in one of two
+ways.
+
+**By hand in RViz:** click **2D Pose Estimate** in the toolbar, press the
+mouse on the robot's position (the starting pose in the table above), and
+drag towards -x, away from the people and the goal, before releasing. The
+arrow is the robot's heading.
+
+**Or with a command** (terminal 3). In the message, the covariance comes
+before the pose on purpose:
 
 ```bash
 ros2 topic pub -1 /initialpose geometry_msgs/msg/PoseWithCovarianceStamped \
   "{header: {frame_id: map}, pose: {covariance: [0.25,0,0,0,0,0, 0,0.25,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0.0685], pose: {position: {x: $SX, y: 0.0, z: 0.0}, orientation: {z: 1.0, w: 0.0}}}}"
+```
+
+Check that AMCL took the pose. In RViz, the laser scan should now line up
+with the walls of the map. In terminal 3:
+
+```bash
 timeout 4 ros2 run tf2_ros tf2_echo map odom | grep -m1 Translation
 ```
 
-If no `Translation` line appears, AMCL rejected the pose; publish it again.
+If no `Translation` line appears, AMCL rejected the pose (its TF buffer was
+still behind); set the pose again.
 
 Undock. The robot backs off the dock and turns to face the people:
 
@@ -234,7 +267,14 @@ In terminal 3, once the recorder is running:
 cp /opt/ros/jazzy/share/turtlebot4_gz_bringup/worlds/$WORLD.sdf bags/$NAME/world_used.sdf
 ```
 
-Send the goal (terminal 3). The script prints `Goal accepted` and, at the
+Send the goal, in one of two ways.
+
+**By hand in RViz:** click **Nav2 Goal** in the toolbar, press the mouse on
+the goal position (the table at the top), and drag towards +x, the direction
+of travel, before releasing. The Navigation 2 panel shows the
+goal's progress, and the planned path appears on the map.
+
+**Or with a command** (terminal 3). It prints `Goal accepted` and, at the
 end, the final status. The third argument is the timeout in wall seconds;
 the fourth is a file it creates when the goal is accepted.
 
@@ -242,8 +282,9 @@ the fourth is a file it creates when the goal is accepted.
 python3 headon_send_goal.py $GX $GY 300 /tmp/goal_accepted
 ```
 
-Head-on scenarios: start the walkers as soon as `Goal accepted` appears
-(terminal 6). The scripts start the person when the goal is accepted.
+Head-on scenarios: start the walkers as soon as the goal is accepted, that
+is, when the robot starts to move or `Goal accepted` appears (terminal 6).
+The scripts start the person at that moment.
 
 ```bash
 # headon: person_1 walks toward the robot at 1.2 m/s

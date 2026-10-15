@@ -91,7 +91,7 @@ To watch a single trial with RViz, add `SHOW_RVIZ=true HEADLESS=false` in front 
 - **Bag names.** A bag name that already exists is refused. A failed start is repeated with `_a2`, `_a3`.
 - **Exact settings of an old run.** Read `bags/<name>/run_notes.txt` and `bags/<name>/config_used.yaml`. The script that ran is saved as `trial_script_used.sh`.
 
-All configuration names below are in `config/` and start with `social_nav2_`. The prefix is left out of the table.
+All configuration names below are in `config/` and start with `social_nav2_`. The prefix is left out of the table. What each part of a name means (`hwreq`, `blockedhold`, `rec20`, `groupskip`, ...) is in [docs/CONFIGURATIONS.md](docs/CONFIGURATIONS.md).
 
 ### 4.1 Ablation A to E (head-on, open space; Chapter 4 and Section 7.2)
 

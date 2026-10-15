@@ -20,8 +20,10 @@ and prints a short result. A run takes 2 to 4 minutes.
 
 - Linux with Docker and Docker Compose
 - An X11 display, for the Gazebo and RViz windows
-- A GPU with Intel/Mesa OpenGL drivers (for other graphics, see the
-  environment variables in `docker/docker-compose.yaml`)
+- A GPU with Intel/Mesa OpenGL drivers. For an NVIDIA GPU, use
+  `docker compose -f docker-compose.nvidia.yaml` in place of `docker compose`
+  below (needs the NVIDIA Container Toolkit); for other graphics, see the
+  environment variables in `docker/docker-compose.yaml`
 
 ## Set up (once)
 
@@ -67,6 +69,9 @@ The same thing without `ros2 launch`:
 
     cd /root/thesis_social_navigation_ws
     ./run_scenario.sh headon
+
+To start each part yourself, one node per terminal, and set the pose and the
+goal by hand in RViz, follow [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md).
 
 ### Options
 
@@ -156,3 +161,7 @@ enough.
 `run_scenario.sh` only chooses between these; the two trial scripts take more
 options (walker speed and position, a second walker, other configs), listed at
 the top of each file.
+
+These two configurations are stages compared in the thesis, not its final
+configuration. What the parts of the names mean, and which file is the final
+one, is in [docs/CONFIGURATIONS.md](docs/CONFIGURATIONS.md).

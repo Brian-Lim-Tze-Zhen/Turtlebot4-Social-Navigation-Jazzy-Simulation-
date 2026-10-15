@@ -6,6 +6,36 @@ A TurtleBot 4 detects people with its camera and LiDAR (YOLO and ByteTrack), pre
 
 The same system on the physical TurtleBot 4 (ROS 2 Humble) is in the companion repository [Turtlebot4-Hardware-Humble](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble).
 
+## How it works
+
+```mermaid
+flowchart TD
+  cam[camera image]:::input --> yolo[Person detector<br/>YOLOv8n-pose and ByteTrack]
+  yolo -- "/person_positions_map" --> ray[Ray localisation<br/>range along the camera bearing]
+  in1[LiDAR scan, static map, odometry]:::input --> ray
+  ray -- "/camera_ray_clusters" --> id[Identity node<br/>position continuity, stationary hold]
+  in2[LiDAR scan, static map]:::input --> id
+  id -- "/person_positions_fused" --> kf[Kalman predictor<br/>velocity and predicted position]
+  in3[odometry]:::input --> kf
+  kf -- "/predicted_person_positions" --> cloud[Person cloud node<br/>obstacle points per person]
+  kf -- "/predicted_person_positions" --> grp[Group detector<br/>pairs and queues]
+  id -- "/person_positions_fused" --> grp
+  in4[camera image, LiDAR scan, static map]:::input --> grp
+  grp -- "/social_groups" --> zone[Social-zone node<br/>graded zone around a group]
+  grp -- "/social_groups" --> cloud
+  kf -- "/predicted_person_positions" --> critic[SocialCritic<br/>in the MPPI controller]:::nav
+  grp -- "/social_groups" --> critic
+  zone -- "/social_zone_map" --> gc[Global costmap<br/>KeepoutFilter]:::nav
+  critic -- "/social_critic/lane_block" --> gc
+  cloud -- "/predicted_person_cloud" --> gc
+  cloud -- "/predicted_person_cloud" --> lc[Local costmap]:::nav
+  classDef default fill:#e8eef7,stroke:#2b4c7e,color:#1a2a40
+  classDef input fill:#f2f2f2,stroke:#999,color:#333
+  classDef nav fill:#e8f3e8,stroke:#3a7a3a,color:#1f3d1f
+```
+
+*Final configuration, the same in simulation and on the robot. Blue: perception and group nodes, with the topics between them; grey: their inputs; green: the navigation stack. The SocialCritic reads only the predicted positions, which carry velocity, and the groups, so that members of a standing group get no lane. The groups also reach the zone node, whose mask the global costmap's KeepoutFilter applies, and the person cloud node, which leaves group members to the zone. The SocialCritic's lane block steers the global plan to one side. The simulation runs `_sim` copies of the nodes, which read raw camera images and use no `/turtlebot4` namespace; the files are listed side by side in [docs/CONFIGURATIONS.md](docs/CONFIGURATIONS.md). Thesis Figure 3.5 shows the perception chain only, and with `/person_positions_fused` as an input of the SocialCritic, which the final configuration no longer has.*
+
 ## Results
 
 ### Head-on walker: the robot moves aside early
@@ -58,18 +88,20 @@ colcon build --symlink-install && source install/setup.bash
 ./run_scenario.sh headon        # or headon_blocked, conversation_wide, conversation_narrow, queue
 ```
 
-To run a scenario step by step instead of with one command, see [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md).
-
-To start the whole stack without a scenario, run `./run_sim.sh` and set the robot's pose with **2D Pose Estimate** in RViz before sending a goal.
+To run a scenario step by step instead, one node per terminal with the pose and goal set by hand in RViz, follow [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md). (`./run_sim.sh` starts the first pipeline of the project, not the one behind the results; see `ros2_ws/src/social_perception/social_perception/README.md`.)
 
 The image installs ROS 2 Jazzy, Nav2, Gazebo Harmonic and the TurtleBot 4 packages; the YOLO weights are downloaded on first use.
 
 ## Documentation
 
+In the order a new reader needs them:
+
 | File | What it holds |
 |---|---|
+| [SCENARIOS.md](SCENARIOS.md) | the five demo scenarios, what to look for, and what to do when a run fails |
+| [docs/MANUAL_RUN.md](docs/MANUAL_RUN.md) | the same scenarios step by step, one node per terminal, with the pose and goal set by hand in RViz (for debugging) |
+| [docs/CONFIGURATIONS.md](docs/CONFIGURATIONS.md) | what the parts of the long configuration names mean, which configuration each run uses, and what differs between the simulation and the robot |
 | [HOW_TO_RUN.md](HOW_TO_RUN.md) | folder map, set-up, and the command, recordings and report of every simulation experiment of the thesis |
-| [SCENARIOS.md](SCENARIOS.md) | the five demo scenarios and what to look for |
 | [docs/DEVELOPMENT_NOTES.md](docs/DEVELOPMENT_NOTES.md) | how the scenarios were built and tuned, with the runs of 24 September to 4 October 2026 |
 | [Turtlebot4-Hardware-Humble](https://github.com/Brian-Lim-Tze-Zhen/Turtlebot4-Hardware-Humble) | the robot side: final robot configuration, launch and run scripts, results on the robot |
 | [docker/notes/](docker/notes/) | fixes for problems of the container (TF QoS, YOLO threads, world sync, package pins) |
